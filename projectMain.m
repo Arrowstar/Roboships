@@ -13,4 +13,8 @@ if(~isdeployed)
     addpath(genpath('ui'));
 end
 
+%remove any previously running timers
+delete(timerfindall); 
+
+%start main UI
 mainGUI();

@@ -55,7 +55,7 @@ function mainGUI_OpeningFcn(hObject, eventdata, handles, varargin)
     % Choose default command line output for mainGUI
     handles.output = hObject;
     
-    arena = NNS_Arena(2*[-25 25], 2*[-25 25]);
+    arena = NNS_Arena(4*[-25 25], 4*[-25 25]);
     
     setappdata(hObject,'arena',arena);
     setappdata(hObject,'loadedShips',{});
