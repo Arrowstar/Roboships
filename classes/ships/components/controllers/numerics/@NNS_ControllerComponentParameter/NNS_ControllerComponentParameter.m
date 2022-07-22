@@ -3,7 +3,7 @@ classdef (Abstract) NNS_ControllerComponentParameter < NNS_ControllerNumeric & N
     %   Detailed explanation goes here
     
     properties(Abstract)
-        paramName@char
+        paramName char
     end
 
     methods(Abstract)

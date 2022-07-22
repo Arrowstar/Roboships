@@ -3,8 +3,8 @@ classdef NNS_StartCntrlrOperation < NNS_AbstractControllerOperation
     %   Detailed explanation goes here
     
     properties
-        cmdTitle@char = 'Start'
-        drawer@NNS_AbstractControllerCommandDrawer
+        cmdTitle char = 'Start'
+        drawer NNS_AbstractControllerCommandDrawer
     end
     
     methods

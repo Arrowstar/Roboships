@@ -3,27 +3,27 @@ classdef NNS_BasicTurretedGun < NNS_AbstractGun & NNS_AbstractPointableComponent
     %projectiles
     
     properties
-        lastShotTime@double = -Inf; %s
+        lastShotTime double = -Inf; %s
 
-        id@double
-        relPos@double         % m - relative to the origin of vessel it's mounted on
+        id double
+        relPos double         % m - relative to the origin of vessel it's mounted on
     end
 
     properties(Dependent)
-        propObjs@NNS_PropagatedObjectList
-        xLims@double
-        yLims@double
+        propObjs NNS_PropagatedObjectList
+        xLims double
+        yLims double
     end
     
     properties(SetObservable)
-        reloadTime@double   %can fire once every "reloadTime" seconds
-        roundSpeed@double   %m/s - speed of shell
-        baseDamage@double
-        angleError@double   %rad
+        reloadTime double   %can fire once every "reloadTime" seconds
+        roundSpeed double   %m/s - speed of shell
+        baseDamage double
+        angleError double   %rad
     end
     
     properties(Constant)
-        typeName@char = 'Turreted Cannon'
+        typeName char = 'Turreted Cannon'
         minMuzzleVelocity = 5;  %m/s
         maxMuzzleVelocity = 50; %m/s
         minBaseDamage = 5;

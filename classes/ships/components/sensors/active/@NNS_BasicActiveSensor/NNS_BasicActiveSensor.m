@@ -2,39 +2,39 @@ classdef NNS_BasicActiveSensor < NNS_AbstractSensor & NNS_AbstractPointableCompo
     %NNS_BasicActiveSensor Summary of this class goes here
        
     properties
-        drawer@NNS_AbstractPropagatedObjectDrawer
+        drawer NNS_AbstractPropagatedObjectDrawer
         
-        filter@NNS_AbstractSensorFilter
-        ship@NNS_PropagatedObject
+        filter NNS_AbstractSensorFilter
+        ship NNS_PropagatedObject
         
         %utilty
-        isaDetectable@function_handle;
-        lastSensorOutput@NNS_SensorOutput
-        id@double
+        isaDetectable function_handle;
+        lastSensorOutput NNS_SensorOutput
+        id double
     end
     
     properties(Dependent)
-        propObjs@NNS_PropagatedObjectList
+        propObjs NNS_PropagatedObjectList
     end
     
     properties(SetObservable) 
-        curConeAngle@double
+        curConeAngle double
         
-        maxRng@double             = 25; % m
-        maxConeAngle@double
-        threeSigRngDevPercent@double         %0 -> 1.0
-        threeSigAngDevPercent@double         %0 -> 1.0
+        maxRng double             = 25; % m
+        maxConeAngle double
+        threeSigRngDevPercent double         %0 -> 1.0
+        threeSigAngDevPercent double         %0 -> 1.0
 
-        relPos@double  = [0;0];         % m - relative to the origin of vessel it's mounted on
+        relPos double  = [0;0];         % m - relative to the origin of vessel it's mounted on
     end
     
     properties(Constant)
-        typeName@char = 'Basic Active Radar';
+        typeName char = 'Basic Active Radar';
         
-        maxAllowableMaxRange@double = 50;
-        maxAllowableMaxConeAngle@double = deg2rad(180);
-        maxAllowableThreeSigRngDevPercent@double = 0.1;
-        maxAllowableThreeSigAngDevPercent@double = 0.1;
+        maxAllowableMaxRange double = 50;
+        maxAllowableMaxConeAngle double = deg2rad(180);
+        maxAllowableThreeSigRngDevPercent double = 0.1;
+        maxAllowableThreeSigAngDevPercent double = 0.1;
     end
     
     methods

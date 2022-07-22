@@ -3,12 +3,12 @@ classdef NNS_BasicActiveSensorSetBearingCntrlrOperation < NNS_AbstractController
     %   Detailed explanation goes here
     
     properties
-        sensor@NNS_BasicActiveSensor
+        sensor NNS_BasicActiveSensor
         
-        desiredBearing@NNS_ControllerNumeric %rad
+        desiredBearing NNS_ControllerNumeric %rad
         
-        cmdTitle@char = 'Set Bearing'
-        drawer@NNS_AbstractControllerCommandDrawer
+        cmdTitle char = 'Set Bearing'
+        drawer NNS_AbstractControllerCommandDrawer
     end
     
     methods

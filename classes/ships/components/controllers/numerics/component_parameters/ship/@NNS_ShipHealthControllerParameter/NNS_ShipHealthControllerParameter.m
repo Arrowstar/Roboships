@@ -3,8 +3,8 @@ classdef NNS_ShipHealthControllerParameter < NNS_ControllerComponentParameter
     %   Detailed explanation goes here
     
     properties
-        ship@NNS_Ship
-        paramName@char = 'Ship Health';
+        ship NNS_Ship
+        paramName char = 'Ship Health';
     end
     
     methods

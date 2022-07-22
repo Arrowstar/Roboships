@@ -3,10 +3,10 @@ classdef NNS_StateManager < matlab.mixin.SetGet
     %heading
     
     properties
-        position@double %meters [2x1]
-        velocity@double %m/s [2x1]
-        heading@double  %radians
-        angRate@double  %rad/s
+        position(2,1) double %meters [2x1]
+        velocity(2,1) double %m/s [2x1]
+        heading double  %radians
+        angRate double  %rad/s
     end
     
     methods

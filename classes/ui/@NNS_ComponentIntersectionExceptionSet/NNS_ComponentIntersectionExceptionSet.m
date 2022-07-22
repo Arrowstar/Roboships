@@ -3,7 +3,7 @@ classdef NNS_ComponentIntersectionExceptionSet < matlab.mixin.SetGet
     %   Detailed explanation goes here
     
     properties
-        exceptions@NNS_ComponentIntersectionException
+        exceptions NNS_ComponentIntersectionException
     end
     
     methods

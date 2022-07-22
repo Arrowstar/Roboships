@@ -3,8 +3,8 @@ classdef NNS_BasicActiveSensorConeAngleControllerParameter < NNS_ControllerCompo
     %   Detailed explanation goes here
     
     properties
-        sensor@NNS_BasicActiveSensor
-        paramName@char = 'Active Radar Angle';
+        sensor NNS_BasicActiveSensor
+        paramName char = 'Active Radar Angle';
     end
     
     methods

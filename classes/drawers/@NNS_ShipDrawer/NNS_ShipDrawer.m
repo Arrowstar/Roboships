@@ -2,9 +2,9 @@ classdef NNS_ShipDrawer < NNS_AbstractPropagatedObjectDrawer
     %NNS_PropagatedObjectDrawer Summary of this class goes here
     
     properties
-        rectWidth@double = 20; %meter
-        rectHgt@double   = 10; %meter
-        ship@NNS_Ship;
+        rectWidth double = 20; %meter
+        rectHgt double   = 10; %meter
+        ship NNS_Ship;
     end
     
     methods

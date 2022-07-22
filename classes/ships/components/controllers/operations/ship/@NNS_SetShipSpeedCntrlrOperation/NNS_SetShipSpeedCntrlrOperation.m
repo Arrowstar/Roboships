@@ -3,12 +3,12 @@ classdef NNS_SetShipSpeedCntrlrOperation < NNS_AbstractControllerOperation
     %   Detailed explanation goes here
    
     properties
-        desiredSpeed@NNS_ControllerNumeric; %m/s
+        desiredSpeed NNS_ControllerNumeric; %m/s
         
-        ship@NNS_Ship
+        ship NNS_Ship
         
-        cmdTitle@char = 'Set Speed';
-        drawer@NNS_AbstractControllerCommandDrawer
+        cmdTitle char = 'Set Speed';
+        drawer NNS_AbstractControllerCommandDrawer
     end
     
     methods

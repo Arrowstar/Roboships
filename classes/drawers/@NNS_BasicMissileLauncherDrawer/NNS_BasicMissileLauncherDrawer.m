@@ -2,11 +2,11 @@ classdef NNS_BasicMissileLauncherDrawer < NNS_AbstractPropagatedObjectDrawer
     %NNS_BasicShipHullDrawer Draws ships hulls in a basic way
     
     properties
-        ship@NNS_Ship;
-        missleLauncher@NNS_BasicMissileLauncher
+        ship NNS_Ship;
+        missleLauncher NNS_BasicMissileLauncher
 
-        hP@matlab.graphics.primitive.Transform;
-        hL@matlab.graphics.primitive.Line;
+        hP matlab.graphics.primitive.Transform;
+        hL matlab.graphics.primitive.Line;
     end
     
     methods

@@ -3,7 +3,7 @@ classdef ShipGraphicalObjectsCompRefDictionary < matlab.mixin.SetGet
     %   Detailed explanation goes here
     
     properties(Access=private)
-        refs@ShipGraphicalObjectsCompReference
+        refs ShipGraphicalObjectsCompReference
     end
     
     methods

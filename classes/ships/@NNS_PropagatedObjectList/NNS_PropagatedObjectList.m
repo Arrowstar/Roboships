@@ -2,11 +2,11 @@ classdef NNS_PropagatedObjectList < matlab.mixin.SetGet
     %NNS_PropagatedObjectList Summary of this class goes here
     
     properties
-        propObjs@NNS_PropagatedObject
+        propObjs NNS_PropagatedObject
         
         shootPropObjs = NNS_PropagatedObject.empty(0,0);
         
-        id@double
+        id double
     end
     
     methods

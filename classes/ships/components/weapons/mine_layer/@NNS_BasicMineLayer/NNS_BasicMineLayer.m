@@ -3,24 +3,24 @@ classdef NNS_BasicMineLayer < NNS_AbstractGun & NNS_AbstractPoweredComponent
     %projectiles
     
     properties
-        lastShotTime@double = -Inf; %s
+        lastShotTime double = -Inf; %s
 
-        id@double
-        relPos@double         % m - relative to the origin of vessel it's mounted on
+        id double
+        relPos double         % m - relative to the origin of vessel it's mounted on
     end
 
     properties(Dependent)
-        propObjs@NNS_PropagatedObjectList
+        propObjs NNS_PropagatedObjectList
     end
     
     properties(SetObservable)
-        reloadTime@double   %can fire once every "reloadTime" seconds
-        baseDamage@double
-        armTime@double %second, duration to wait before checking
+        reloadTime double   %can fire once every "reloadTime" seconds
+        baseDamage double
+        armTime double %second, duration to wait before checking
     end
     
     properties(Constant)
-        typeName@char = 'Mine Layer'
+        typeName char = 'Mine Layer'
         minBaseDamage = 100;
         maxBaseDamage = 1000; 
         minReloadTime = 1;    %sec

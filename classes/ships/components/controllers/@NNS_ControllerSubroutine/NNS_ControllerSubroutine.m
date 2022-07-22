@@ -3,10 +3,10 @@ classdef NNS_ControllerSubroutine  < matlab.mixin.SetGet
     %   Detailed explanation goes here
     
     properties
-        name@char = 'Untitled Subroutine';
+        name char = 'Untitled Subroutine';
         
-        operations@NNS_AbstractControllerOperation
-        opNext@NNS_AbstractControllerOperation
+        operations NNS_AbstractControllerOperation
+        opNext NNS_AbstractControllerOperation
     end
     
     methods

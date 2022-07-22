@@ -3,7 +3,7 @@ classdef NNS_IsGreaterThanOrEqualToConditional < NNS_AbstractMathConditional
     %   Detailed explanation goes here
        
     properties        
-        cmdTitle@char = 'Is Greater Than Or Equal To?';
+        cmdTitle char = 'Is Greater Than Or Equal To?';
     end
     
     methods

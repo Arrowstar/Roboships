@@ -1,7 +1,7 @@
 classdef NNS_CommandConnectionTracker < matlab.mixin.SetGet    
     
     properties
-        elements@NNS_CommandConnectionTrackerElement
+        elements NNS_CommandConnectionTrackerElement
     end
     
     methods

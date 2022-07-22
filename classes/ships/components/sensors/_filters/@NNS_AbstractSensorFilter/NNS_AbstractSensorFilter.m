@@ -3,7 +3,7 @@ classdef(Abstract) NNS_AbstractSensorFilter < matlab.mixin.SetGet & matlab.mixin
     %   Detailed explanation goes here
     
     properties
-        sensor@NNS_AbstractSensor
+        sensor NNS_AbstractSensor
     end
     
     methods

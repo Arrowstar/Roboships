@@ -3,8 +3,8 @@ classdef NNS_ShipXPositionControllerParameter < NNS_ControllerComponentParameter
     %   Detailed explanation goes here
     
     properties
-        ship@NNS_Ship
-        paramName@char = 'Ship X Location';
+        ship NNS_Ship
+        paramName char = 'Ship X Location';
     end
     
     methods

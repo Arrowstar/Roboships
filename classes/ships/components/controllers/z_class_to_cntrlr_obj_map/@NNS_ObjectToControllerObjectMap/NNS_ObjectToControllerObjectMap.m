@@ -3,7 +3,7 @@ classdef NNS_ObjectToControllerObjectMap < matlab.mixin.SetGet
     %   Detailed explanation goes here
     
     properties
-        entries@NNS_ObjectToControllerObjectMapEntry
+        entries NNS_ObjectToControllerObjectMapEntry
     end
     
     methods

@@ -3,7 +3,7 @@ classdef NNS_ControllerVariableMathExpression < NNS_ControllerMathExpression
     %   Detailed explanation goes here
     
     properties
-        var@NNS_ControllerVariable
+        var NNS_ControllerVariable
     end
     
     methods

@@ -3,10 +3,10 @@ classdef NNS_BasicTurretedGunFireGunCntrlrOperation < NNS_AbstractControllerOper
     %   Detailed explanation goes here
     
     properties
-        gun@NNS_AbstractGun
+        gun NNS_AbstractGun
         
-        cmdTitle@char = 'Fire Weapon'
-        drawer@NNS_AbstractControllerCommandDrawer
+        cmdTitle char = 'Fire Weapon'
+        drawer NNS_AbstractControllerCommandDrawer
     end
     
     methods

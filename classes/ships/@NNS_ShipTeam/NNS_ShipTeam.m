@@ -12,7 +12,7 @@ classdef NNS_ShipTeam < matlab.mixin.SetGet
     
     properties
         id(1,1) double
-        str@char
+        str char
     end
     
     methods

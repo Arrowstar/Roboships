@@ -3,8 +3,8 @@ classdef NNS_BasicTurretedGunBearingControllerParameter < NNS_ControllerComponen
     %   Detailed explanation goes here
     
     properties
-        gun@NNS_AbstractGun
-        paramName@char = 'Weapon Bearing';
+        gun NNS_AbstractGun
+        paramName char = 'Weapon Bearing';
     end
     
     methods

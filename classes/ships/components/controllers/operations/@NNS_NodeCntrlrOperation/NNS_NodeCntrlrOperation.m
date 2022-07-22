@@ -3,8 +3,8 @@ classdef NNS_NodeCntrlrOperation < NNS_AbstractControllerOperation
     %   Detailed explanation goes here
     
     properties
-        cmdTitle@char = 'Node'
-        drawer@NNS_AbstractControllerCommandDrawer
+        cmdTitle char = 'Node'
+        drawer NNS_AbstractControllerCommandDrawer
     end
     
     methods

@@ -2,11 +2,11 @@ classdef NNS_ExplosionEffectDrawer < NNS_AbstractPropagatedObjectDrawer
     %NNS_BasicPropjectileDrawer Draws the basic projectile onto the axes
     
     properties
-        effect@NNS_ExplosionEffect;
+        effect NNS_ExplosionEffect;
         
         %projectile graphic object
-        hC@matlab.graphics.primitive.Transform
-        hR@matlab.graphics.primitive.Rectangle
+        hC matlab.graphics.primitive.Transform
+        hR matlab.graphics.primitive.Rectangle
     end
     
     methods

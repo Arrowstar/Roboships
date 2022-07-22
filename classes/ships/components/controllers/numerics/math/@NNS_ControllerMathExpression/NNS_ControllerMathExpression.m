@@ -3,15 +3,15 @@ classdef (Abstract) NNS_ControllerMathExpression < matlab.mixin.SetGet & matlab.
     %   Detailed explanation goes here
     
     properties
-        initExpr@char
-        finalExpr@char
-        intermExpres@cell %cell array with one or more intermidiate things
+        initExpr char
+        finalExpr char
+        intermExpres cell %cell array with one or more intermidiate things
         
-        numInputs@double; 
-        inputs@NNS_ControllerMathExpression
-        parent@NNS_ControllerMathExpression
+        numInputs double; 
+        inputs NNS_ControllerMathExpression
+        parent NNS_ControllerMathExpression
         
-        isSelected@logical = false;
+        isSelected logical = false;
     end
     
     methods

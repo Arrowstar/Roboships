@@ -1,10 +1,10 @@
 classdef NNS_CommandConnectionTrackerElement < matlab.mixin.SetGet    
     
     properties
-        circPoly@imellipse
-        fromCmd@NNS_AbstractControllerOperation
-        toCmd@NNS_AbstractControllerOperation
-        id@struct
+        circPoly imellipse %#ok<IMELLPS> 
+        fromCmd NNS_AbstractControllerOperation
+        toCmd NNS_AbstractControllerOperation
+        id struct
     end
     
     methods

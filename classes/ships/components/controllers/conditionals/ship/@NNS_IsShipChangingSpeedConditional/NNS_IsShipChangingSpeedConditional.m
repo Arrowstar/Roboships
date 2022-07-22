@@ -3,12 +3,12 @@ classdef NNS_IsShipChangingSpeedConditional < NNS_AbstractControllerConditional
     %   Detailed explanation goes here
        
     properties        
-        ship@NNS_Ship
+        ship NNS_Ship
         
-        cmdTitle@char = 'Is Ship Changing Speed?';
-        drawer@NNS_AbstractControllerCommandDrawer
+        cmdTitle char = 'Is Ship Changing Speed?';
+        drawer NNS_AbstractControllerCommandDrawer
         
-        condAns@logical = false
+        condAns logical = false
     end
     
     methods

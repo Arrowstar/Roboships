@@ -3,17 +3,17 @@ classdef NNS_BasicShipController < NNS_AbstractShipController & NNS_AbstractPowe
     %   Detailed explanation goes here
     
     properties
-        ship@NNS_PropagatedObject
-        allSubroutines@NNS_ControllerSubroutine
+        ship NNS_PropagatedObject
+        allSubroutines NNS_ControllerSubroutine
         
         variables(1,1) NNS_ControllerVariableList
         
-        id@double
-        relPos@double = [0;0]         % m - relative to the origin of vessel it's mounted on
+        id double
+        relPos double = [0;0]         % m - relative to the origin of vessel it's mounted on
     end
     
     properties(Constant)
-        typeName@char = 'Ship Controller';
+        typeName char = 'Ship Controller';
     end
     
     methods

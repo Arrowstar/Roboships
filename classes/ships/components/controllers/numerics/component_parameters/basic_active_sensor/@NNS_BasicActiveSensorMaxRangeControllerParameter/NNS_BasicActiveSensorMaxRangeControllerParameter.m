@@ -3,8 +3,8 @@ classdef NNS_BasicActiveSensorMaxRangeControllerParameter < NNS_ControllerCompon
     %   Detailed explanation goes here
     
     properties
-        sensor@NNS_BasicActiveSensor
-        paramName@char = 'Active Radar Range';
+        sensor NNS_BasicActiveSensor
+        paramName char = 'Active Radar Range';
     end
     
     methods

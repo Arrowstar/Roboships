@@ -3,8 +3,8 @@ classdef NNS_BasicActiveSensorDetObjBearingControllerParam < NNS_ControllerCompo
     %   Detailed explanation goes here
     
     properties
-        sensor@NNS_BasicActiveSensor
-        paramName@char = 'Detected Obj. Bearing';
+        sensor NNS_BasicActiveSensor
+        paramName char = 'Detected Obj. Bearing';
     end
     
     methods

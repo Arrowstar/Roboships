@@ -4,7 +4,7 @@ classdef ShipGraphicalObjectsCompReference < matlab.mixin.SetGet
     
     properties
         cPoly
-        comp@NNS_VehicleComponent
+        comp NNS_VehicleComponent
     end
     
     methods

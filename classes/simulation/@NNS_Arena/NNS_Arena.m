@@ -3,11 +3,11 @@ classdef NNS_Arena < matlab.mixin.SetGet
     %   Detailed explanation goes here
     
     properties
-        xLims@double
-        yLims@double
+        xLims double
+        yLims double
         
-        propObjs@NNS_PropagatedObjectList
-        simClock@NNS_SimClock
+        propObjs NNS_PropagatedObjectList
+        simClock NNS_SimClock
     end
     
     methods

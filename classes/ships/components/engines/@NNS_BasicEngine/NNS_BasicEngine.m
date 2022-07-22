@@ -3,18 +3,18 @@ classdef NNS_BasicEngine < NNS_AbstractEngine & NNS_AbstractPoweredComponent
     %it is attached to.
     
     properties
-        ship@NNS_PropagatedObject
-        throttle@double = 1.0; %-1.0 -> 1.0   
-        id@double
+        ship NNS_PropagatedObject
+        throttle double = 1.0; %-1.0 -> 1.0   
+        id double
     end
     
     properties(SetObservable)
-        maxThrust@double = 100; %N
+        maxThrust double = 100; %N
     end
     
     properties(Constant)
         maximumAllowedMaxThrust = 1E4;
-        typeName@char = 'Basic Engine';
+        typeName char = 'Basic Engine';
     end
     
     methods

@@ -2,12 +2,12 @@ classdef NNS_SimulationDriver < matlab.mixin.SetGet
     %NSS_SimulationDriver Drives each time step of the simulation
     
     properties
-        propObjs@NNS_PropagatedObjectList
-        clock@NNS_SimClock
-        showGraphics@logical = true;
+        propObjs NNS_PropagatedObjectList
+        clock NNS_SimClock
+        showGraphics logical = true;
 
-        fieldAxes@matlab.graphics.axis.Axes
-        arena@NNS_Arena
+        fieldAxes matlab.graphics.axis.Axes
+        arena NNS_Arena
     end
     
     properties(Dependent = true)

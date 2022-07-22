@@ -3,7 +3,7 @@ classdef NNS_BasicActiveSensorSetFilterCntrlrOperationDrawer < NNS_AbstractContr
     %   Detailed explanation goes here
     
     properties
-        cmd@NNS_AbstractControllerOperation
+        cmd NNS_AbstractControllerOperation
     end
     
     methods

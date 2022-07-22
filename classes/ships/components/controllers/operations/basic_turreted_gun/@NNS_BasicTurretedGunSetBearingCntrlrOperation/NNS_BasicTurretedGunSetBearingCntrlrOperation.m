@@ -3,12 +3,12 @@ classdef NNS_BasicTurretedGunSetBearingCntrlrOperation < NNS_AbstractControllerO
     %   Detailed explanation goes here
     
     properties
-        gun@NNS_AbstractGun
+        gun NNS_AbstractGun
         
-        desiredBearing@NNS_ControllerNumeric; %rad
+        desiredBearing NNS_ControllerNumeric; %rad
         
-        cmdTitle@char = 'Set Bearing';
-        drawer@NNS_AbstractControllerCommandDrawer
+        cmdTitle char = 'Set Bearing';
+        drawer NNS_AbstractControllerCommandDrawer
     end
     
     methods

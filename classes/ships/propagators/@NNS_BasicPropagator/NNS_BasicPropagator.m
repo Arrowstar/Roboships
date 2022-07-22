@@ -2,16 +2,16 @@ classdef NNS_BasicPropagator < matlab.mixin.SetGet
     %NNS_BasicPropagator Propagates things in a straight line based on 
     
     properties
-        stateMgr@NNS_StateManager
-        components@NNS_VehicleComponentList
-        propObj@NNS_PropagatedObject
+        stateMgr NNS_StateManager
+        components NNS_VehicleComponentList
+        propObj NNS_PropagatedObject
         
-        speedCntrlr@NNS_PidController
-        headingCntrlr@NNS_PidController
+        speedCntrlr NNS_PidController
+        headingCntrlr NNS_PidController
         
-        numSubsteps@double = 2;
+        numSubsteps double = 2;
         
-        iterator@function_handle = @(odefun,tspan,y0) ode4(odefun,tspan,y0);
+        iterator function_handle = @(odefun,tspan,y0) ode4(odefun,tspan,y0);
     end
     
     methods

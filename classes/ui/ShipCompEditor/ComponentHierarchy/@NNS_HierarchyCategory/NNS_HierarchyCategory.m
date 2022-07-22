@@ -3,7 +3,7 @@ classdef NNS_HierarchyCategory < matlab.mixin.SetGet
     %   Detailed explanation goes here
     
     properties
-        name@char
+        name char
     end
     
     methods

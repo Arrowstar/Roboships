@@ -3,12 +3,12 @@ classdef NNS_SetShipHeadingCntrlrOperation < NNS_AbstractControllerOperation
     %   Detailed explanation goes here
     
     properties
-        desiredHeading@NNS_ControllerNumeric %rad
+        desiredHeading NNS_ControllerNumeric %rad
         
-        ship@NNS_PropagatedObject
+        ship NNS_PropagatedObject
         
-        cmdTitle@char = 'Set Ship Heading'
-        drawer@NNS_AbstractControllerCommandDrawer
+        cmdTitle char = 'Set Ship Heading'
+        drawer NNS_AbstractControllerCommandDrawer
     end
     
     methods

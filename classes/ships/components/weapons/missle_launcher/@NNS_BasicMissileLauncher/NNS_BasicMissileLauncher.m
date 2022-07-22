@@ -3,25 +3,25 @@ classdef NNS_BasicMissileLauncher < NNS_AbstractGun & NNS_AbstractPointableCompo
     %projectiles
     
     properties
-        lastShotTime@double = -Inf; %s
+        lastShotTime double = -Inf; %s
 
-        id@double
-        relPos@double         % m - relative to the origin of vessel it's mounted on
+        id double
+        relPos double         % m - relative to the origin of vessel it's mounted on
     end
 
     properties(Dependent)
-        propObjs@NNS_PropagatedObjectList
-        xLims@double
-        yLims@double
+        propObjs NNS_PropagatedObjectList
+        xLims double
+        yLims double
     end
     
     properties(SetObservable)
-        reloadTime@double   %can fire once every "reloadTime" seconds
-        baseDamage@double
+        reloadTime double   %can fire once every "reloadTime" seconds
+        baseDamage double
     end
     
     properties(Constant)
-        typeName@char = 'Missile Launcher'
+        typeName char = 'Missile Launcher'
         minBaseDamage = 10;
         maxBaseDamage = 500; 
         minReloadTime = 5;    %sec

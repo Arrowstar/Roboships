@@ -2,15 +2,15 @@ classdef NNS_Ship < NNS_PropagatedObject & NNS_ShootableObject & NNS_IsDetectabl
     %NNS_Ship Represents a ship on the battlefield.
     
     properties
-        id@double
-        name@char
-        desc@char
+        id double
+        name char
+        desc char
         team NNS_ShipTeam = NNS_ShipTeam.None
         
-        hull@NNS_AbstractHull
-        components@NNS_VehicleComponentList
-        basicPropagator@NNS_BasicPropagator
-        arena@NNS_Arena
+        hull NNS_AbstractHull
+        components NNS_VehicleComponentList
+        basicPropagator NNS_BasicPropagator
+        arena NNS_Arena
     end
     
     methods

@@ -3,11 +3,11 @@ classdef (Abstract = true) NNS_VehicleComponent < matlab.mixin.SetGet & matlab.m
     %on a vehicle: an engine, gun turret, rudder, sensor, etc.
     
     properties(Abstract)
-        id@double
+        id double
     end
     
     properties(Abstract,Constant)
-        typeName@char
+        typeName char
     end
     
     methods(Abstract = true)

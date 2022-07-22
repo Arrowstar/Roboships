@@ -2,13 +2,13 @@ classdef NNS_BasicMineDrawer < NNS_AbstractPropagatedObjectDrawer
     %NNS_BasicMineDrawer Draws the basic projectile onto the axes
     
     properties
-        marker@char = '.';
-        mine@NNS_BasicMine;
+        marker char = '.';
+        mine NNS_BasicMine;
         
         %projectile graphic object
-        hP@matlab.graphics.primitive.Line
-        hL@matlab.graphics.primitive.Transform
-        hR@matlab.graphics.primitive.Rectangle
+        hP matlab.graphics.primitive.Line
+        hL matlab.graphics.primitive.Transform
+        hR matlab.graphics.primitive.Rectangle
     end
     
     methods

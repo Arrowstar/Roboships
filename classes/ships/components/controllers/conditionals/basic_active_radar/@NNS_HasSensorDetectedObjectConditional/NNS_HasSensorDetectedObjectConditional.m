@@ -3,12 +3,12 @@ classdef NNS_HasSensorDetectedObjectConditional < NNS_AbstractControllerConditio
     %   Detailed explanation goes here
        
     properties        
-        sensor@NNS_BasicActiveSensor
+        sensor NNS_BasicActiveSensor
         
-        cmdTitle@char = 'Has Detected?';
-        drawer@NNS_AbstractControllerCommandDrawer
+        cmdTitle char = 'Has Detected?';
+        drawer NNS_AbstractControllerCommandDrawer
         
-        condAns@logical = false
+        condAns logical = false
     end
     
     methods

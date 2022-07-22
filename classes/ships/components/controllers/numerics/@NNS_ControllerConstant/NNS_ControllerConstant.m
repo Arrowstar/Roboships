@@ -3,7 +3,7 @@ classdef NNS_ControllerConstant < NNS_ControllerNumeric
     %   Detailed explanation goes here
     
     properties
-        value@double
+        value double
     end
     
     methods

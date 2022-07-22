@@ -2,11 +2,11 @@ classdef NNS_ExplosionEffect < NNS_AbstractEffect
     %NNS_BasicProjectile Summary of this class goes here
     
     properties
-        createTime@double %s
-        duration@double = 2; %s
+        createTime double %s
+        duration double = 2; %s
         initialRadius = 1; %m
         finalRadius = 2; %m
-        curRadius@double = 0.25;
+        curRadius double = 0.25;
         
         initColor = [1 0 0];
         finalColor = [255, 207, 158]/255;

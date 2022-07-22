@@ -2,9 +2,9 @@ classdef (Abstract) NNS_AbstractEffect < NNS_PropagatedObject
     %NNS_BasicProjectile Summary of this class goes here
     
     properties
-        ownerShip@NNS_PropagatedObject
-        relPosToShip@double
-        id@double
+        ownerShip NNS_PropagatedObject
+        relPosToShip double
+        id double
     end
     
     methods                

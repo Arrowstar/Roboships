@@ -2,18 +2,18 @@ classdef NNS_BasicMissile < NNS_ShootableObject & NNS_AbstractProjectile & NNS_I
     %NNS_BasicProjectile Summary of this class goes here
     
     properties
-        maxRange@double = 1E99;  %m
-        initPos@double = [0;0]; %m
-        baseDamage@double;
+        maxRange double = 1E99;  %m
+        initPos double = [0;0]; %m
+        baseDamage double;
         
-        hull@NNS_AbstractHull
-        components@NNS_VehicleComponentList
-        basicPropagator@NNS_BasicPropagator
+        hull NNS_AbstractHull
+        components NNS_VehicleComponentList
+        basicPropagator NNS_BasicPropagator
        
         team NNS_ShipTeam = NNS_ShipTeam.None
-        minRng@double = Inf;
+        minRng double = Inf;
         
-        id@double = rand();
+        id double = rand();
     end
     
     properties(Dependent)

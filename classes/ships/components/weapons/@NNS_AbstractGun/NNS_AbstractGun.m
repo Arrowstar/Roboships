@@ -3,8 +3,8 @@ classdef(Abstract = true) NNS_AbstractGun < NNS_AbstractDrawableVehicleComponent
     %create projectiles to shoot at other objects
        
     properties
-        drawer@NNS_AbstractPropagatedObjectDrawer
-        ship@NNS_PropagatedObject
+        drawer NNS_AbstractPropagatedObjectDrawer
+        ship NNS_PropagatedObject
     end
     
     methods

@@ -3,8 +3,8 @@ classdef NNS_ComponentIntersectionException < matlab.mixin.SetGet
     %   Detailed explanation goes here
     
     properties
-        compClass1@char
-        compClass2@char
+        compClass1 char
+        compClass2 char
     end
     
     methods

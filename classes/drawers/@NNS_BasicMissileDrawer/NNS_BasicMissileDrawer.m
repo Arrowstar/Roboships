@@ -2,7 +2,7 @@ classdef NNS_BasicMissileDrawer < NNS_AbstractPropagatedObjectDrawer
     %NNS_PropagatedObjectDrawer Summary of this class goes here
     
     properties
-        missile@NNS_BasicMissile;
+        missile NNS_BasicMissile;
     end
     
     methods

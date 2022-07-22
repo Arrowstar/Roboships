@@ -3,12 +3,12 @@ classdef NNS_BasicActiveSensorSetConeAngleCntrlrOperation < NNS_AbstractControll
     %   Detailed explanation goes here
     
     properties
-        sensor@NNS_BasicActiveSensor
+        sensor NNS_BasicActiveSensor
         
-        desiredConeAngle@NNS_ControllerNumeric %rad
+        desiredConeAngle NNS_ControllerNumeric %rad
         
-        cmdTitle@char = 'Set Cone Angle';
-        drawer@NNS_AbstractControllerCommandDrawer
+        cmdTitle char = 'Set Cone Angle';
+        drawer NNS_AbstractControllerCommandDrawer
     end
     
     methods

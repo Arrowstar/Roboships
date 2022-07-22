@@ -3,10 +3,10 @@ classdef NNS_MathControllerParameter < NNS_ControllerComponentParameter
     %   Detailed explanation goes here
     
     properties
-        ship@NNS_PropagatedObject
-        paramName@char = 'Math';
+        ship NNS_PropagatedObject
+        paramName char = 'Math';
         
-        math@NNS_ControllerMathExpression
+        math NNS_ControllerMathExpression
     end
     
     methods

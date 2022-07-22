@@ -3,7 +3,7 @@ classdef NNS_ControllerParameterMathExpression < NNS_ControllerMathExpression
     %   Detailed explanation goes here
     
     properties
-        param@NNS_ControllerComponentParameter
+        param NNS_ControllerComponentParameter
     end
     
     methods

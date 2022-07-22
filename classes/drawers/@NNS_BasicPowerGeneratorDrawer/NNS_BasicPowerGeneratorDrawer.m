@@ -3,9 +3,9 @@ classdef NNS_BasicPowerGeneratorDrawer < NNS_AbstractPropagatedObjectDrawer
     %   Detailed explanation goes here
     
     properties
-        ship@NNS_Ship;
-        pwrGen@NNS_BasicPowerGenerator
-        hP@matlab.graphics.primitive.Transform;
+        ship NNS_Ship;
+        pwrGen NNS_BasicPowerGenerator
+        hP matlab.graphics.primitive.Transform;
     end
     
     methods

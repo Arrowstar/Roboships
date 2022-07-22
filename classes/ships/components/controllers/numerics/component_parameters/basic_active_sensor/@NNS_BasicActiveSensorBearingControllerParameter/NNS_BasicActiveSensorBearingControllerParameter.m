@@ -3,8 +3,8 @@ classdef NNS_BasicActiveSensorBearingControllerParameter < NNS_ControllerCompone
     %   Detailed explanation goes here
     
     properties
-        sensor@NNS_BasicActiveSensor
-        paramName@char = 'Active Radar Bearing';
+        sensor NNS_BasicActiveSensor
+        paramName char = 'Active Radar Bearing';
     end
     
     methods

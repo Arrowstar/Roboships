@@ -3,7 +3,7 @@ classdef(Abstract = true) NNS_AbstractHull < NNS_AbstractDrawableVehicleComponen
     %represent the physics geometry of a propagation object.
     
     properties(Abstract = true)
-        drawer@NNS_AbstractPropagatedObjectDrawer
+        drawer NNS_AbstractPropagatedObjectDrawer
     end
     
     methods

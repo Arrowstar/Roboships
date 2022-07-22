@@ -3,10 +3,10 @@ classdef NNS_ConstantControllerParameter < NNS_ControllerComponentParameter
     %   Detailed explanation goes here
     
     properties
-        ship@NNS_Ship
-        paramName@char = 'Constant';
+        ship NNS_Ship
+        paramName char = 'Constant';
         
-        constant@NNS_ControllerConstant
+        constant NNS_ControllerConstant
     end
     
     methods

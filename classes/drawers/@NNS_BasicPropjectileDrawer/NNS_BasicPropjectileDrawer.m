@@ -2,11 +2,11 @@ classdef NNS_BasicPropjectileDrawer < NNS_AbstractPropagatedObjectDrawer
     %NNS_BasicPropjectileDrawer Draws the basic projectile onto the axes
     
     properties
-        marker@char = '.';
-        projectile@NNS_BasicProjectile;
+        marker char = '.';
+        projectile NNS_BasicProjectile;
         
         %projectile graphic object
-        hP@matlab.graphics.primitive.Line
+        hP matlab.graphics.primitive.Line
     end
     
     methods

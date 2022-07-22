@@ -2,10 +2,10 @@ classdef NNS_BasicShipControllerDrawer < NNS_AbstractPropagatedObjectDrawer
     %NNS_BasicShipHullDrawer Draws ships hulls in a basic way
     
     properties
-        ship@NNS_PropagatedObject;
-        controller@NNS_BasicShipController
+        ship NNS_PropagatedObject;
+        controller NNS_BasicShipController
 
-        hP@matlab.graphics.primitive.Transform;
+        hP matlab.graphics.primitive.Transform;
     end
     
     methods

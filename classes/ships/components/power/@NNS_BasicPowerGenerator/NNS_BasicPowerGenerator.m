@@ -3,20 +3,20 @@ classdef NNS_BasicPowerGenerator < NNS_AbstractPowerSource
     %   Detailed explanation goes here
     
     properties
-        id@double
+        id double
         
-        ship@NNS_PropagatedObject;
-        drawer@NNS_AbstractPropagatedObjectDrawer
+        ship NNS_PropagatedObject;
+        drawer NNS_AbstractPropagatedObjectDrawer
     end
     
     properties(SetObservable) 
-        maxPowerGen@double
-        relPos@double  = [0;0];         % m - relative to the origin of vessel it's mounted on
+        maxPowerGen double
+        relPos double  = [0;0];         % m - relative to the origin of vessel it's mounted on
     end
     
     properties(Constant)
         maximumAllowedMaxPowerGen = 10000;
-        typeName@char = 'Basic Power Generator';
+        typeName char = 'Basic Power Generator';
     end
     
     methods

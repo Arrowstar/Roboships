@@ -4,14 +4,14 @@ classdef (Abstract = true) NNS_PropagatedObject < matlab.mixin.SetGet & matlab.m
     
     properties
         %state of object
-        active@logical = true
-        stateMgr@NNS_StateManager; 
+        active logical = true
+        stateMgr NNS_StateManager; 
         
         %drawing parameters of object
-        drawer@NNS_AbstractPropagatedObjectDrawer;
+        drawer NNS_AbstractPropagatedObjectDrawer;
     end
     properties(Abstract = true)
-        id@double
+        id double
     end
     
     methods

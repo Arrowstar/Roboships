@@ -3,18 +3,18 @@ classdef NNS_BasicRudder < NNS_AbstractRudder & NNS_AbstractPoweredComponent
     %   Detailed explanation goes here
     
     properties
-        ship@NNS_PropagatedObject
-        rudderShift@double = 0.0; % -1.0->1.0
-        id@double
+        ship NNS_PropagatedObject
+        rudderShift double = 0.0; % -1.0->1.0
+        id double
     end
     
     properties(SetObservable)
-       maxTorque@double = 10000; %N-m
+       maxTorque double = 10000; %N-m
     end
     
     properties(Constant)
         maximumAllowedMaxTorque = 1E4;
-        typeName@char = 'Basic Rudder';
+        typeName char = 'Basic Rudder';
     end
     
     methods

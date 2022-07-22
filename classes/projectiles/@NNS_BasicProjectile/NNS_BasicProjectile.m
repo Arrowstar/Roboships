@@ -2,21 +2,21 @@ classdef NNS_BasicProjectile < NNS_AbstractProjectile
     %NNS_BasicProjectile Summary of this class goes here
     
     properties
-        maxRange@double = 1E99;  %m
-        initPos@double = [0;0]; %m
-        baseDamage@double;
+        maxRange double = 1E99;  %m
+        initPos double = [0;0]; %m
+        baseDamage double;
         
-        components@NNS_VehicleComponentList
-        basicPropagator@NNS_BasicPropagator
+        components NNS_VehicleComponentList
+        basicPropagator NNS_BasicPropagator
         
-        propObjs@NNS_PropagatedObjectList
-        clock@NNS_SimClock;
-        xLims@double
-        yLims@double
+        propObjs NNS_PropagatedObjectList
+        clock NNS_SimClock;
+        xLims double
+        yLims double
         
-        minRng@double = Inf;
+        minRng double = Inf;
         
-        id@double = rand();
+        id double = rand();
     end
     
     methods

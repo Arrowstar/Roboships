@@ -1,15 +1,15 @@
 classdef(Abstract) NNS_AbstractMathConditional < NNS_AbstractControllerConditional
     
     properties
-        ship@NNS_Ship
+        ship NNS_Ship
         
-        drawer@NNS_AbstractControllerCommandDrawer
+        drawer NNS_AbstractControllerCommandDrawer
         
-        lhs@NNS_ControllerNumeric
-        rhs@NNS_ControllerNumeric
-        sideLastSet@char = 'none';
+        lhs NNS_ControllerNumeric
+        rhs NNS_ControllerNumeric
+        sideLastSet char = 'none';
         
-        condAns@logical = false
+        condAns logical = false
     end
     
     methods       

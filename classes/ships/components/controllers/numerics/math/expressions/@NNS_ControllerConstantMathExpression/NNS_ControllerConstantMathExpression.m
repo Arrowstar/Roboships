@@ -3,7 +3,7 @@ classdef NNS_ControllerConstantMathExpression < NNS_ControllerMathExpression
     %   Detailed explanation goes here
     
     properties
-        const@NNS_ControllerConstant
+        const NNS_ControllerConstant
     end
     
     methods

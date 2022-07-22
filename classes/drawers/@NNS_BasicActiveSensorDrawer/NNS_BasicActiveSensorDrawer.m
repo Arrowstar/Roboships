@@ -2,10 +2,10 @@ classdef NNS_BasicActiveSensorDrawer < NNS_AbstractPropagatedObjectDrawer
     %NNS_BasicActiveSensorDrawer Summary of this class goes here
     
     properties
-        ship@NNS_PropagatedObject;
-        sensor@NNS_BasicActiveSensor;
-        hP@matlab.graphics.primitive.Transform;
-        hCP@matlab.graphics.primitive.Transform;
+        ship NNS_PropagatedObject;
+        sensor NNS_BasicActiveSensor;
+        hP matlab.graphics.primitive.Transform;
+        hCP matlab.graphics.primitive.Transform;
     end
     
     methods

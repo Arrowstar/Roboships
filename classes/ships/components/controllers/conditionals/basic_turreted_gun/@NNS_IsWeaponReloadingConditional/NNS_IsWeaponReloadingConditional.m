@@ -3,12 +3,12 @@ classdef NNS_IsWeaponReloadingConditional < NNS_AbstractControllerConditional
     %   Detailed explanation goes here
        
     properties        
-        gun@NNS_AbstractGun
+        gun NNS_AbstractGun
         
-        cmdTitle@char = 'Is Reloading?';
-        drawer@NNS_AbstractControllerCommandDrawer
+        cmdTitle char = 'Is Reloading?';
+        drawer NNS_AbstractControllerCommandDrawer
         
-        condAns@logical = false
+        condAns logical = false
     end
     
     methods

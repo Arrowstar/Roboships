@@ -2,10 +2,10 @@ classdef NNS_BasicMineLayerDrawer < NNS_AbstractPropagatedObjectDrawer
     %NNS_BasicShipHullDrawer Draws ships hulls in a basic way
     
     properties
-        ship@NNS_Ship;
-        gun@NNS_BasicMineLayer
+        ship NNS_Ship;
+        gun NNS_BasicMineLayer
 
-        hP@matlab.graphics.primitive.Transform;
+        hP matlab.graphics.primitive.Transform;
     end
     
     methods

@@ -7,10 +7,10 @@ classdef ShipGraphicalObjects < matlab.mixin.SetGet
         cPolys
         selectedPoly
         
-        oldPos@double
-        cPolyCompRefs@ShipGraphicalObjectsCompRefDictionary
+        oldPos double
+        cPolyCompRefs ShipGraphicalObjectsCompRefDictionary
         
-        els@event.listener = event.listener.empty(0,0);
+        els event.listener = event.listener.empty(0,0);
     end
     
     methods

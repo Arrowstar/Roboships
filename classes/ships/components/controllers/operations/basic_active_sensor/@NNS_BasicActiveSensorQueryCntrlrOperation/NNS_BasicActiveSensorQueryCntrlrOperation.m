@@ -3,10 +3,10 @@ classdef NNS_BasicActiveSensorQueryCntrlrOperation < NNS_AbstractControllerOpera
     %   Detailed explanation goes here
     
     properties
-        sensor@NNS_BasicActiveSensor
+        sensor NNS_BasicActiveSensor
         
-        cmdTitle@char = 'Query Sensor'
-        drawer@NNS_AbstractControllerCommandDrawer
+        cmdTitle char = 'Query Sensor'
+        drawer NNS_AbstractControllerCommandDrawer
     end
     
     methods

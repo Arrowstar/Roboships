@@ -3,10 +3,10 @@ classdef NNS_ExecuteSubroutineCntrlrOperation < NNS_AbstractControllerOperation
     %   Detailed explanation goes here
    
     properties
-        subroutine@NNS_ControllerSubroutine;
+        subroutine NNS_ControllerSubroutine;
         
-        cmdTitle@char = 'Subroutine';
-        drawer@NNS_AbstractControllerCommandDrawer
+        cmdTitle char = 'Subroutine';
+        drawer NNS_AbstractControllerCommandDrawer
     end
     
     methods

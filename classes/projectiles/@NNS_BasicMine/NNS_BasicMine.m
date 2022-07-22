@@ -2,19 +2,19 @@ classdef NNS_BasicMine < NNS_AbstractProjectile & NNS_IsDetectable
     %NNS_BasicProjectile Summary of this class goes here
     
     properties
-        maxRange@double = 1E99;  %m
-        initPos@double = [0;0]; %m
-        createTime@double = -Inf;
-        baseDamage@double;
-        armTime@double;
-        maxTime@double = 30;
+        maxRange double = 1E99;  %m
+        initPos double = [0;0]; %m
+        createTime double = -Inf;
+        baseDamage double;
+        armTime double;
+        maxTime double = 30;
         
-        propObjs@NNS_PropagatedObjectList
-        clock@NNS_SimClock;
+        propObjs NNS_PropagatedObjectList
+        clock NNS_SimClock;
         
-        minRng@double = Inf;
+        minRng double = Inf;
         
-        id@double = rand();
+        id double = rand();
     end
     
     methods

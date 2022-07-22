@@ -2,31 +2,31 @@ classdef NNS_BasicShipHull < NNS_AbstractHull
     %NNS_BasicShipHull Summary of this class goes here
     
     properties
-        ship@NNS_PropagatedObject
-        relPos@double  = [0;0];
+        ship NNS_PropagatedObject
+        relPos double  = [0;0];
         
-        curHitPts@double
+        curHitPts double
         
-        drawer@NNS_AbstractPropagatedObjectDrawer
-        id@double
+        drawer NNS_AbstractPropagatedObjectDrawer
+        id double
     end
     
     properties(SetObservable)
-        hullVerts@double
-        hullThickness@double %millimeters
+        hullVerts double
+        hullThickness double %millimeters
     end
     
     properties(Constant)
-        typeName@char = 'Basic Ship Hull';
+        typeName char = 'Basic Ship Hull';
         minHullThickness = 1; %mm
         maxHullThickness = 100; %mm
     end
     
     properties(Access=private)
-        mass@double = [];
-        momInert@double = [];
-        frontArea@double = [];
-        sideArea@double = [];
+        mass double = [];
+        momInert double = [];
+        frontArea double = [];
+        sideArea double = [];
     end
     
     methods

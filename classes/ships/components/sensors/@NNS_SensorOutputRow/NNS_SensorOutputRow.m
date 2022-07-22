@@ -3,11 +3,11 @@ classdef NNS_SensorOutputRow < matlab.mixin.SetGet
     %one detectable object
     
     properties
-        sensor@NNS_AbstractSensor
-        propObj@NNS_PropagatedObject
-        detected@logical = false;
-        range@double
-        bearing@double
+        sensor NNS_AbstractSensor
+        propObj NNS_PropagatedObject
+        detected logical = false;
+        range double
+        bearing double
     end
     
     methods

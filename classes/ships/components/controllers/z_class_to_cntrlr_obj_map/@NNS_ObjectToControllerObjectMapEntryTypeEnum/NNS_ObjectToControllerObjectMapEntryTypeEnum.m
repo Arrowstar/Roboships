@@ -9,7 +9,7 @@ classdef NNS_ObjectToControllerObjectMapEntryTypeEnum < matlab.mixin.SetGet
     end
     
     properties
-        id@double
+        id double
     end
     
     methods

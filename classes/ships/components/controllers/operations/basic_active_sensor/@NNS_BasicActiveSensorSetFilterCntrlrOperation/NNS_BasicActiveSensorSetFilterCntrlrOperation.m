@@ -3,12 +3,12 @@ classdef NNS_BasicActiveSensorSetFilterCntrlrOperation < NNS_AbstractControllerO
     %   Detailed explanation goes here
     
     properties
-        sensor@NNS_BasicActiveSensor
+        sensor NNS_BasicActiveSensor
         
-        desiredFilterId@NNS_ControllerNumeric 
+        desiredFilterId NNS_ControllerNumeric 
         
-        cmdTitle@char = 'Set Filter'
-        drawer@NNS_AbstractControllerCommandDrawer
+        cmdTitle char = 'Set Filter'
+        drawer NNS_AbstractControllerCommandDrawer
     end
     
     methods

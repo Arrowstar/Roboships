@@ -2,7 +2,7 @@ classdef NNS_SensorOutput < matlab.mixin.SetGet
     %NNS_SensorOutput Represents output from a sensor query
     
     properties
-        outputs@NNS_SensorOutputRow
+        outputs NNS_SensorOutputRow
     end
     
     methods

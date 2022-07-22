@@ -5,19 +5,19 @@ classdef(Abstract) NNS_AbstractControllerOperation  < NNS_CmdListboxEntry & matl
     properties
         canvassPos(1,2) double = [0,0];
         
-        numOutputs@double = 1;
-        outputCircCanvassPos@cell = cell(5,1);
+        numOutputs double = 1;
+        outputCircCanvassPos cell = cell(5,1);
         
-        isDeletable@logical = true;
+        isDeletable logical = true;
     end
     
     properties(Access=protected)
-        nextOp@cell = {NNS_AbstractControllerOperation.empty(0,0)};
+        nextOp cell = {NNS_AbstractControllerOperation.empty(0,0)};
     end
     
     properties(Abstract = true)
-        cmdTitle@char
-        drawer@NNS_AbstractControllerCommandDrawer
+        cmdTitle char
+        drawer NNS_AbstractControllerCommandDrawer
     end
     
     methods        

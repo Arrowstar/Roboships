@@ -3,7 +3,7 @@ classdef NNS_IsEqualToConditional < NNS_AbstractMathConditional
     %   Detailed explanation goes here
        
     properties        
-        cmdTitle@char = 'Is Equal To?';
+        cmdTitle char = 'Is Equal To?';
     end
     
     methods

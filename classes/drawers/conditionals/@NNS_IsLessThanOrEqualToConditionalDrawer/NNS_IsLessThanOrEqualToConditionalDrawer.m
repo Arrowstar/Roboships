@@ -3,7 +3,7 @@ classdef NNS_IsLessThanOrEqualToConditionalDrawer < NNS_AbstractControllerComman
     %   Detailed explanation goes here
     
     properties
-        cmd@NNS_AbstractControllerOperation
+        cmd NNS_AbstractControllerOperation
     end
     
     methods

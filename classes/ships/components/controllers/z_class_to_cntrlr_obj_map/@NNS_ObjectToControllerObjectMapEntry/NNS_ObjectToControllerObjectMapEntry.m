@@ -3,12 +3,12 @@ classdef NNS_ObjectToControllerObjectMapEntry < matlab.mixin.SetGet
     %   Detailed explanation goes here
     
     properties
-        compClassName@char
-        cmdClassName@char
+        compClassName char
+        cmdClassName char
         
-        type@NNS_ObjectToControllerObjectMapEntryTypeEnum
+        type NNS_ObjectToControllerObjectMapEntryTypeEnum
         
-        listboxStr@char
+        listboxStr char
     end
     
     methods

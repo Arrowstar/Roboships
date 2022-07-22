@@ -3,7 +3,7 @@ classdef(Abstract = true) NNS_AbstractShipController  < NNS_AbstractDrawableVehi
     %   Detailed explanation goes here
        
     properties
-        drawer@NNS_AbstractPropagatedObjectDrawer
+        drawer NNS_AbstractPropagatedObjectDrawer
     end
     
     methods

@@ -3,8 +3,8 @@ classdef NNS_BasicActiveSensorDetObjRangeControllerParam < NNS_ControllerCompone
     %   Detailed explanation goes here
     
     properties
-        sensor@NNS_BasicActiveSensor
-        paramName@char = 'Detected Obj. Range';
+        sensor NNS_BasicActiveSensor
+        paramName char = 'Detected Obj. Range';
     end
     
     methods

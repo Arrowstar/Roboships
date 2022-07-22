@@ -3,8 +3,8 @@ classdef NNS_ShipHeadingControllerParameter < NNS_ControllerComponentParameter
     %   Detailed explanation goes here
     
     properties
-        ship@NNS_PropagatedObject
-        paramName@char = 'Ship Heading';
+        ship NNS_PropagatedObject
+        paramName char = 'Ship Heading';
     end
     
     methods

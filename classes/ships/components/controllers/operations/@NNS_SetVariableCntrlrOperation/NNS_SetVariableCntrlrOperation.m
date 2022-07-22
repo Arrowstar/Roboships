@@ -3,11 +3,11 @@ classdef NNS_SetVariableCntrlrOperation < NNS_AbstractControllerOperation
     %   Detailed explanation goes here
     
     properties       
-        var@NNS_ControllerVariable
-        varSetToValue@NNS_ControllerNumeric
+        var NNS_ControllerVariable
+        varSetToValue NNS_ControllerNumeric
         
-        cmdTitle@char = 'Set Variable';
-        drawer@NNS_AbstractControllerCommandDrawer
+        cmdTitle char = 'Set Variable';
+        drawer NNS_AbstractControllerCommandDrawer
     end
     
     methods

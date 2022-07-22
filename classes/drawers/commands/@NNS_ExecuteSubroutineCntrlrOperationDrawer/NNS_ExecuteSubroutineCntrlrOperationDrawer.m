@@ -3,7 +3,7 @@ classdef NNS_ExecuteSubroutineCntrlrOperationDrawer < NNS_AbstractControllerComm
     %   Detailed explanation goes here
     
     properties
-        cmd@NNS_AbstractControllerOperation
+        cmd NNS_AbstractControllerOperation
     end
     
     methods

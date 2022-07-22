@@ -2,8 +2,8 @@ classdef(Abstract = true) NNS_AbstractProjectile < NNS_PropagatedObject & NNS_Is
     %NNS_AbstractProjectile Summary of this class goes here
     
     properties
-        ownerShip@NNS_PropagatedObject
-        effectiveRng@double = 0; 
+        ownerShip NNS_PropagatedObject
+        effectiveRng double = 0; 
     end
     
     methods

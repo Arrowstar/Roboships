@@ -3,8 +3,8 @@ classdef NNS_ControllerVariable < NNS_ControllerNumeric
     %   Detailed explanation goes here
     
     properties
-        name@char
-        value@NNS_ControllerConstant
+        name char
+        value NNS_ControllerConstant
     end
     
     methods

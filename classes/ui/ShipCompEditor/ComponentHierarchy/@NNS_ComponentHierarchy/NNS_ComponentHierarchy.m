@@ -3,8 +3,8 @@ classdef NNS_ComponentHierarchy < matlab.mixin.SetGet
     %   Detailed explanation goes here
     
     properties
-        components@NNS_HierarchyComponent
-        categories@NNS_HierarchyCategory
+        components NNS_HierarchyComponent
+        categories NNS_HierarchyCategory
     end
     
     methods

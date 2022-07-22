@@ -3,21 +3,21 @@ classdef(Abstract) NNS_AbstractControllerCommandDrawer < matlab.mixin.SetGet
     %   Detailed explanation goes here
     
     properties(Abstract)
-        cmd@NNS_AbstractControllerOperation
+        cmd NNS_AbstractControllerOperation
     end
     
     properties
-        updateSecondNode@logical = true;
+        updateSecondNode logical = true;
     end
 
     properties(Access=protected)
-        cmdPoly@impoly
-        titleText@matlab.graphics.primitive.Text %matlab.graphics.shape.TextBox
-        titleTextBg@matlab.graphics.primitive.Patch
-        infoText@matlab.graphics.primitive.Text  %matlab.graphics.shape.TextBox
-        infoTextBg@matlab.graphics.primitive.Patch
-        circPoly@imellipse
-        hLine@matlab.graphics.chart.primitive.Quiver; %matlab.graphics.primitive.Line
+        cmdPoly impoly
+        titleText matlab.graphics.primitive.Text %matlab.graphics.shape.TextBox
+        titleTextBg matlab.graphics.primitive.Patch
+        infoText matlab.graphics.primitive.Text  %matlab.graphics.shape.TextBox
+        infoTextBg matlab.graphics.primitive.Patch
+        circPoly imellipse
+        hLine matlab.graphics.chart.primitive.Quiver; %matlab.graphics.primitive.Line
         
         squareWidth = 3;
         squareHeight = 1.5;

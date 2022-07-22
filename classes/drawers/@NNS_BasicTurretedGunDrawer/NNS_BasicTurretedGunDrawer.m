@@ -2,11 +2,11 @@ classdef NNS_BasicTurretedGunDrawer < NNS_AbstractPropagatedObjectDrawer
     %NNS_BasicShipHullDrawer Draws ships hulls in a basic way
     
     properties
-        ship@NNS_Ship;
-        gun@NNS_BasicTurretedGun
+        ship NNS_Ship;
+        gun NNS_BasicTurretedGun
 
-        hP@matlab.graphics.primitive.Transform;
-        hL@matlab.graphics.primitive.Line;
+        hP matlab.graphics.primitive.Transform;
+        hL matlab.graphics.primitive.Line;
     end
     
     methods

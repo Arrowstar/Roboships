@@ -3,9 +3,7 @@ classdef NNS_NodeCntrlrOperationDrawer < NNS_AbstractControllerCommandDrawer
     %   Detailed explanation goes here
     
     properties
-        cmd@NNS_AbstractControllerOperation
-        
-
+        cmd NNS_AbstractControllerOperation
     end
     
     methods

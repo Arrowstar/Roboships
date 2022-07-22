@@ -1,9 +1,8 @@
-
 classdef NNS_VehicleComponentList < matlab.mixin.SetGet
     %NNS_VehicleComponentList Summary of this class goes here
     
     properties
-        components@NNS_VehicleComponent
+        components NNS_VehicleComponent
         
         hullComps = NNS_AbstractHull.empty(0,0);
         engComps = NNS_AbstractEngine.empty(0,0);

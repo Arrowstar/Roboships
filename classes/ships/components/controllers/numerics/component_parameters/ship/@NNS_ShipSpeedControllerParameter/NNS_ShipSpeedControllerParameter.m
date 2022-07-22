@@ -3,8 +3,8 @@ classdef NNS_ShipSpeedControllerParameter < NNS_ControllerComponentParameter
     %   Detailed explanation goes here
     
     properties
-        ship@NNS_Ship
-        paramName@char = 'Ship Speed';
+        ship NNS_Ship
+        paramName char = 'Ship Speed';
     end
     
     methods

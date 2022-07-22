@@ -3,9 +3,9 @@ classdef(Abstract = true) NNS_AbstractDrawableVehicleComponent < NNS_VehicleComp
     %   Detailed explanation goes here
     
     properties(Abstract = true)
-        ship@NNS_PropagatedObject
-        drawer@NNS_AbstractPropagatedObjectDrawer
-        relPos@double         % m - relative to the origin of vessel it's mounted on
+        ship NNS_PropagatedObject
+        drawer NNS_AbstractPropagatedObjectDrawer
+        relPos double         % m - relative to the origin of vessel it's mounted on
     end
     
     properties(Dependent)
