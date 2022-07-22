@@ -4,7 +4,7 @@ classdef NNS_NodeCntrlrOperation < NNS_AbstractControllerOperation
     
     properties
         cmdTitle char = 'Node'
-        drawer NNS_AbstractControllerCommandDrawer
+        drawer NNS_NodeCntrlrOperationDrawer
     end
     
     methods

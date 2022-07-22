@@ -6,7 +6,7 @@ classdef NNS_ExecuteSubroutineCntrlrOperation < NNS_AbstractControllerOperation
         subroutine NNS_ControllerSubroutine;
         
         cmdTitle char = 'Subroutine';
-        drawer NNS_AbstractControllerCommandDrawer
+        drawer NNS_ExecuteSubroutineCntrlrOperationDrawer
     end
     
     methods

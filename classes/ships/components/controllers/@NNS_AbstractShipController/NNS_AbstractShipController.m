@@ -14,6 +14,6 @@ classdef(Abstract = true) NNS_AbstractShipController  < NNS_AbstractDrawableVehi
         
         executeNextOperation(obj);
         
-        subroutine = getSubroutineForIndex(obj,ind); %If ind = 0, return main, else if ind > 0, then return that subroutine from the list
+%         subroutine = getSubroutineForIndex(obj,ind); %If ind = 0, return main, else if ind > 0, then return that subroutine from the list
     end
 end

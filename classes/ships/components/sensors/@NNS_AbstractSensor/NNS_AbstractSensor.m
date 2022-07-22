@@ -3,7 +3,7 @@ classdef(Abstract = true) NNS_AbstractSensor < NNS_AbstractDrawableVehicleCompon
     %provide the ability for an object to detect other objects.
     
     properties(Abstract = true)
-        drawer NNS_AbstractPropagatedObjectDrawer
+%         drawer NNS_AbstractPropagatedObjectDrawer
     end
     
     methods

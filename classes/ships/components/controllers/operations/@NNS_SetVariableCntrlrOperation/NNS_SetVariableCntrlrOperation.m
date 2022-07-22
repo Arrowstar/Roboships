@@ -7,7 +7,7 @@ classdef NNS_SetVariableCntrlrOperation < NNS_AbstractControllerOperation
         varSetToValue NNS_ControllerNumeric
         
         cmdTitle char = 'Set Variable';
-        drawer NNS_AbstractControllerCommandDrawer
+        drawer NNS_SetVariableCntrlrOperationDrawer
     end
     
     methods

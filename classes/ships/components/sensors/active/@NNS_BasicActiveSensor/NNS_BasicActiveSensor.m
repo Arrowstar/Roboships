@@ -5,7 +5,7 @@ classdef NNS_BasicActiveSensor < NNS_AbstractSensor & NNS_AbstractPointableCompo
         drawer NNS_AbstractPropagatedObjectDrawer
         
         filter NNS_AbstractSensorFilter
-        ship NNS_PropagatedObject
+        ship
         
         %utilty
         isaDetectable function_handle;

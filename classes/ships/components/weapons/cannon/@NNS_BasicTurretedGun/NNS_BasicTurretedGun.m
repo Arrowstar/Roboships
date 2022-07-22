@@ -5,6 +5,9 @@ classdef NNS_BasicTurretedGun < NNS_AbstractGun & NNS_AbstractPointableComponent
     properties
         lastShotTime double = -Inf; %s
 
+        drawer 
+        ship 
+
         id double
         relPos double         % m - relative to the origin of vessel it's mounted on
     end

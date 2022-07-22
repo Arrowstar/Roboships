@@ -6,7 +6,7 @@ classdef NNS_BasicTurretedGunFireGunCntrlrOperation < NNS_AbstractControllerOper
         gun NNS_AbstractGun
         
         cmdTitle char = 'Fire Weapon'
-        drawer NNS_AbstractControllerCommandDrawer
+        drawer NNS_BasicTurretedGunFireGunCntrlrOperationDrawer
     end
     
     methods

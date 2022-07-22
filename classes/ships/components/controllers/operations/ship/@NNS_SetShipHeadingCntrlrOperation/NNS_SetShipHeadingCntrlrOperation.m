@@ -8,7 +8,7 @@ classdef NNS_SetShipHeadingCntrlrOperation < NNS_AbstractControllerOperation
         ship NNS_PropagatedObject
         
         cmdTitle char = 'Set Ship Heading'
-        drawer NNS_AbstractControllerCommandDrawer
+        drawer NNS_SetShipHeadingCntrlrOperationDrawer
     end
     
     methods

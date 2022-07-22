@@ -8,7 +8,7 @@ classdef NNS_BasicActiveSensorSetFilterCntrlrOperation < NNS_AbstractControllerO
         desiredFilterId NNS_ControllerNumeric 
         
         cmdTitle char = 'Set Filter'
-        drawer NNS_AbstractControllerCommandDrawer
+        drawer NNS_BasicActiveSensorSetFilterCntrlrOperationDrawer
     end
     
     methods

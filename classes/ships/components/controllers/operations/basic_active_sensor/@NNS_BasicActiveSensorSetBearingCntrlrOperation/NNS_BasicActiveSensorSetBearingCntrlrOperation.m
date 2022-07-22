@@ -8,7 +8,7 @@ classdef NNS_BasicActiveSensorSetBearingCntrlrOperation < NNS_AbstractController
         desiredBearing NNS_ControllerNumeric %rad
         
         cmdTitle char = 'Set Bearing'
-        drawer NNS_AbstractControllerCommandDrawer
+        drawer NNS_BasicActiveSensorSetBearingCntrlrOperationDrawer
     end
     
     methods

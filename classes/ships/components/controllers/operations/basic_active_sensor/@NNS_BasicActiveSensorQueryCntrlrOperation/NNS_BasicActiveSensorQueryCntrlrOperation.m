@@ -6,7 +6,7 @@ classdef NNS_BasicActiveSensorQueryCntrlrOperation < NNS_AbstractControllerOpera
         sensor NNS_BasicActiveSensor
         
         cmdTitle char = 'Query Sensor'
-        drawer NNS_AbstractControllerCommandDrawer
+        drawer NNS_BasicActiveSensorQueryCntrlrOperationDrawer
     end
     
     methods

@@ -8,7 +8,7 @@ classdef NNS_BasicActiveSensorSetConeAngleCntrlrOperation < NNS_AbstractControll
         desiredConeAngle NNS_ControllerNumeric %rad
         
         cmdTitle char = 'Set Cone Angle';
-        drawer NNS_AbstractControllerCommandDrawer
+        drawer NNS_BasicActiveSensorSetConeAngleCntrlrOperationDrawer
     end
     
     methods

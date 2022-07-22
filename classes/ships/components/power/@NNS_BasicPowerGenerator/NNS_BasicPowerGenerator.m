@@ -6,7 +6,7 @@ classdef NNS_BasicPowerGenerator < NNS_AbstractPowerSource
         id double
         
         ship NNS_PropagatedObject;
-        drawer NNS_AbstractPropagatedObjectDrawer
+        drawer 
     end
     
     properties(SetObservable) 

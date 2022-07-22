@@ -25,7 +25,7 @@ classdef NNS_SimulationDriver < matlab.mixin.SetGet
             obj.fieldAxes = arena.getFigAxes();
             obj.showGraphics = showGraphics;
             
-            obj.clock = NNS_SimClock(0, 300, 0, 1/15);
+            obj.clock = NNS_SimClock(0, 300, 0, 1/10);
             obj.arena.simClock = obj.clock;
         end
         
@@ -81,6 +81,7 @@ classdef NNS_SimulationDriver < matlab.mixin.SetGet
                               'ExecutionMode','fixedRate', 'Period',1/15);
             t = tic;
             while(obj.curSimTime <= obj.endTime && obj.propObjs.getNumActivePropObjs() > 0)
+                t1 = tic;
                 obj.curSimTime = obj.curSimTime + obj.timeStep;
                                 
                 propObjsIndsToBeDeleted = [];
@@ -94,7 +95,7 @@ classdef NNS_SimulationDriver < matlab.mixin.SetGet
                     end
                     
                     if(obj.showGraphics)
-%                         title(obj.fieldAxes, sprintf('Sim Time = %.3f\nClock Time = %.3f', obj.curSimTime, toc(t)));
+                        title(obj.fieldAxes, sprintf('Sim Time = %.3f\nClock Time = %.3f', obj.curSimTime, toc(t)));
                         propObj.drawObjectToAxes(obj.fieldAxes);
                     end
                 end
@@ -110,6 +111,9 @@ classdef NNS_SimulationDriver < matlab.mixin.SetGet
                 if(obj.curSimTime == obj.startTime + obj.timeStep)
                     start(drawTimer);
                 end
+
+                %do simulation in "real time"
+%                 pause(obj.timeStep - toc(t1));
                 
 %                 if(obj.showGraphics)
 %                     drawnow limitrate;

@@ -8,7 +8,7 @@ classdef NNS_BasicTurretedGunSetBearingCntrlrOperation < NNS_AbstractControllerO
         desiredBearing NNS_ControllerNumeric; %rad
         
         cmdTitle char = 'Set Bearing';
-        drawer NNS_AbstractControllerCommandDrawer
+        drawer NNS_BasicTurretedGunSetBearingCntrlrOperationDrawer
     end
     
     methods

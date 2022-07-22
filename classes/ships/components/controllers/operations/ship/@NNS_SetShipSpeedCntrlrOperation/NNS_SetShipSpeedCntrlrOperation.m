@@ -8,7 +8,7 @@ classdef NNS_SetShipSpeedCntrlrOperation < NNS_AbstractControllerOperation
         ship NNS_Ship
         
         cmdTitle char = 'Set Speed';
-        drawer NNS_AbstractControllerCommandDrawer
+        drawer NNS_SetShipSpeedCntrlrOperationDrawer
     end
     
     methods

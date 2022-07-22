@@ -1,5 +1,5 @@
-classdef(Abstract) NNS_AbstractControllerOperation  < NNS_CmdListboxEntry & matlab.mixin.Heterogeneous
-    %NNS_ControllerSubroutine Summary of this class goes here
+classdef(Abstract) NNS_AbstractControllerOperation < NNS_CmdListboxEntry & matlab.mixin.Heterogeneous
+    %NNS_AbstractControllerOperation Summary of this class goes here
     %   Detailed explanation goes here
     
     properties
@@ -17,7 +17,7 @@ classdef(Abstract) NNS_AbstractControllerOperation  < NNS_CmdListboxEntry & matl
     
     properties(Abstract = true)
         cmdTitle char
-        drawer NNS_AbstractControllerCommandDrawer
+%         drawer NNS_AbstractControllerCommandDrawer = NNS_StartCntrlrOperationDrawer(NNS_StartCntrlrOperation());
     end
     
     methods        
