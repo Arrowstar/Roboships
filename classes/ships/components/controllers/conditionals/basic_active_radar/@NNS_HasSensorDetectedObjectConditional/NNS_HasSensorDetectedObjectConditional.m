@@ -6,7 +6,7 @@ classdef NNS_HasSensorDetectedObjectConditional < NNS_AbstractControllerConditio
         sensor NNS_BasicActiveSensor
         
         cmdTitle char = 'Has Detected?';
-        drawer NNS_AbstractControllerCommandDrawer
+        drawer NNS_HasSensorDetectedObjectConditionalDrawer
         
         condAns logical = false
     end

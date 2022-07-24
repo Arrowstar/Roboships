@@ -5,6 +5,9 @@ classdef NNS_BasicMineLayer < NNS_AbstractGun & NNS_AbstractPoweredComponent
     properties
         lastShotTime double = -Inf; %s
 
+        drawer NNS_AbstractPropagatedObjectDrawer
+        ship NNS_PropagatedObject
+
         id double
         relPos double         % m - relative to the origin of vessel it's mounted on
     end
@@ -111,7 +114,8 @@ classdef NNS_BasicMineLayer < NNS_AbstractGun & NNS_AbstractPoweredComponent
             gunReloadTimeL = addlistener(obj,'reloadTime','PostSet',fH);
             gunBaseDamageL = addlistener(obj,'baseDamage','PostSet',fH);
             
-            hFig = basicMineLayerEditorGUI(obj);
+            app = basicMineLayerEditorGUI_App(obj);
+            hFig = app.basicMineLayerEditorGUI;
             hFig.CloseRequestFcn = @(src, evt) obj.mineLayerEditorCloseReqFunc(src, evt, gunReloadTimeL, gunBaseDamageL);
         end
         
@@ -137,7 +141,7 @@ classdef NNS_BasicMineLayer < NNS_AbstractGun & NNS_AbstractPoweredComponent
     
     methods(Static)
         function gun = getDefaultBasicMineLayer(ship)
-            gun = NNS_BasicMineLayer(1, 10, 5, [0;0], ship);
+            gun = NNS_BasicMineLayer(NNS_BasicMineLayer.minReloadTime, NNS_BasicMineLayer.minBaseDamage, 5, [0;0], ship);
         end
         
         function compUpdated(~,~,handles)

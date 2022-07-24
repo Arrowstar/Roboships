@@ -11,5 +11,7 @@ function updateDataDisplays(handles)
             handles.selectedCompSumText.String = selComp.getInfoStrForComponent();
             handles.selCompSumPanel.Title = sprintf('Component Summary (%s: %s)', selComp.getShortCompName, selComp.typeName);
         end
+
+        drawnow limitrate;
     end
 end

@@ -189,7 +189,8 @@ classdef NNS_BasicShipHull < NNS_AbstractHull
             rudder = obj.ship.components.rudComps(1);
             rudL = addlistener(rudder,'maxTorque','PostSet',fH);
             
-            hFig = basicHullEngineRudderEditorGUI(obj.ship);
+            app = basicHullEngineRudderEditorGUI_App(obj.ship);
+            hFig = app.basicHullEngineRudderEditorGUI;
             hFig.CloseRequestFcn = @(src, evt) obj.hullEditorCloseReqFunc(src, evt, hullThicknessL, engL, rudL);
         end
         

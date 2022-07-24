@@ -1,4 +1,4 @@
-clc; clear variables; format long g; close all;
+clc; clear variables; format long g; close all force;
 
 %Include matlabrc, hopefully
 %#function matlabrc
@@ -8,6 +8,7 @@ warning('off', 'MATLAB:structOnObject');
 
 %set pathes if not deployed
 if(~isdeployed) 
+    restoredefaultpath();
     addpath(genpath('classes'));
     addpath(genpath('helper_methods'));
     addpath(genpath('ui'));
@@ -17,4 +18,4 @@ end
 delete(timerfindall); 
 
 %start main UI
-mainGUI();
+mainGUI_App();

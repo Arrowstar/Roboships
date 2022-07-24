@@ -29,6 +29,24 @@ classdef NNS_ComponentHierarchy < matlab.mixin.SetGet
                 end
             end
         end
+
+        function nodes = getTreeNodes(obj, tree)
+            cats = obj.categories;
+            comps = obj.components;
+
+            for(i=1:length(cats))
+                cat = cats(i);
+                node = uitreenode(tree, 'Text',cat.name);
+                nodes(i) = node; %#ok<AGROW> 
+
+                for(j=1:length(comps))
+                    comp = comps(j);
+                    if(strcmpi(comp.category.name,cat.name))
+                        uitreenode(node, 'Text',comp.name);
+                    end
+                end
+            end
+        end
     end
     
     methods(Static)
@@ -51,7 +69,6 @@ classdef NNS_ComponentHierarchy < matlab.mixin.SetGet
             cH.components(end+1) = NNS_HierarchyComponent(NNS_BasicMineLayer.typeName,weaponsCat);
             cH.components(end+1) = NNS_HierarchyComponent(NNS_BasicMissileLauncher.typeName,weaponsCat);
             cH.components(end+1) = NNS_HierarchyComponent(NNS_BasicPowerGenerator.typeName,pwrGen);
-            
         end
         
         function newComp = getDefaultComponentForTypeName(typeName, ship)

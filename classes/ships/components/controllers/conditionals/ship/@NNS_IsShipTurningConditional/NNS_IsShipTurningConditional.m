@@ -6,7 +6,7 @@ classdef NNS_IsShipTurningConditional < NNS_AbstractControllerConditional
         ship NNS_Ship
         
         cmdTitle char = 'Is Ship Turning?';
-        drawer NNS_AbstractControllerCommandDrawer
+        drawer NNS_IsShipTurningConditionalDrawer
         
         condAns logical = false
     end

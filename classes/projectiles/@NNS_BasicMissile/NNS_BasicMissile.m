@@ -172,7 +172,7 @@ classdef NNS_BasicMissile < NNS_ShootableObject & NNS_AbstractProjectile & NNS_I
             missile.team = ownerShip.team;
             
             missile.basicPropagator.speedCntrlr.setPIDParam(NNS_PidController.PID_SETPOINT, 1E99);
-            missile.basicPropagator.headingCntrlr.Kp = 30;
+            missile.basicPropagator.headingCntrlr.Kp = 60;
             missile.basicPropagator.headingCntrlr.Ki = 89;
             missile.basicPropagator.headingCntrlr.Kd = 100;
             

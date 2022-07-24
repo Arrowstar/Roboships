@@ -13,7 +13,7 @@ classdef NNS_BasicShipController < NNS_AbstractShipController & NNS_AbstractPowe
     end
     
     properties(Constant)
-        typeName char = 'Ship Controller';
+        typeName char = 'Block Diagram Controller';
     end
     
     methods

@@ -5,6 +5,9 @@ classdef NNS_BasicMissileLauncher < NNS_AbstractGun & NNS_AbstractPointableCompo
     properties
         lastShotTime double = -Inf; %s
 
+        drawer NNS_AbstractPropagatedObjectDrawer
+        ship NNS_PropagatedObject
+
         id double
         relPos double         % m - relative to the origin of vessel it's mounted on
     end
@@ -126,7 +129,8 @@ classdef NNS_BasicMissileLauncher < NNS_AbstractGun & NNS_AbstractPointableCompo
             gunReloadTimeL = addlistener(obj,'reloadTime','PostSet',fH);
             gunBaseDamageL = addlistener(obj,'baseDamage','PostSet',fH);
             
-            hFig = basicMissileLauncherEditorGUI(obj);
+            app = basicMissileLauncherEditorGUI_App(obj);
+            hFig = app.basicMissileLauncherEditorGUI;
             hFig.CloseRequestFcn = @(src, evt) obj.missileLauncherEditorCloseReqFunc(src, evt, gunReloadTimeL, gunBaseDamageL);
         end
         

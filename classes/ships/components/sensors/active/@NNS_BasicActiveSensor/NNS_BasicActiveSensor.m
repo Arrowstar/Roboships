@@ -169,7 +169,7 @@ classdef NNS_BasicActiveSensor < NNS_AbstractSensor & NNS_AbstractPointableCompo
             pntAngle = obj.getAbsPntingAngle();
             [x1,y1] = pol2cart(pntAngle,1);
             [x2,y2] = pol2cart(heading,1);
-            pntDiff = dang([x1 y1 0], [x2 y2 0]);
+            pntDiff = dang([x1 y1 0]', [x2 y2 0]');
             if(abs(pntDiff) > obj.curConeAngle/2)
                 tf = false;
                 return
@@ -229,7 +229,8 @@ classdef NNS_BasicActiveSensor < NNS_AbstractSensor & NNS_AbstractPointableCompo
             sensorRngDevL = addlistener(obj,'threeSigRngDevPercent','PostSet',fH);
             sensorAngDevL = addlistener(obj,'threeSigAngDevPercent','PostSet',fH);
             
-            hFig = basicActiveSensorEditorGUI(obj);
+            app = basicActiveSensorEditorGUI_App(obj);
+            hFig = app.basicActiveSensorEditorGUI;
             hFig.CloseRequestFcn = @(src, evt) obj.activeSensorEditorCloseReqFunc(src, evt, sensorRngL, sensorCaL, sensorRngDevL, sensorAngDevL);
         end
         

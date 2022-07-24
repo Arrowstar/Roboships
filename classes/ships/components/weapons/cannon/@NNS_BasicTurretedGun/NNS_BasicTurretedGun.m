@@ -153,7 +153,8 @@ classdef NNS_BasicTurretedGun < NNS_AbstractGun & NNS_AbstractPointableComponent
             gunBaseDamageL = addlistener(obj,'baseDamage','PostSet',fH);
             gunAngleErrorL = addlistener(obj,'angleError','PostSet',fH);
             
-            hFig = basicTurretedGunEditorGUI(obj);
+            app = basicTurretedGunEditorGUI_App(obj);
+            hFig = app.basicTurretedGunEditorGUI;
             hFig.CloseRequestFcn = @(src, evt) obj.turretedGunEditorCloseReqFunc(src, evt, gunReloadTimeL, gunRoundSpeedL, gunBaseDamageL, gunAngleErrorL);
         end
         

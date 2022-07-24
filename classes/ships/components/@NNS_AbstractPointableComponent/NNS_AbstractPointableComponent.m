@@ -5,7 +5,7 @@ classdef(Abstract = true) NNS_AbstractPointableComponent < matlab.mixin.SetGet
     %a subset along with an astract class that implements VehicleComponent.
     
     properties(Abstract = true)
-        ship 
+%         ship 
     end
     
     properties

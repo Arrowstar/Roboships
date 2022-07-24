@@ -118,10 +118,12 @@ classdef NNS_SimulationDriver < matlab.mixin.SetGet
 %                 if(obj.showGraphics)
 %                     drawnow limitrate;
 %                 end
+
+                fprintf('Sim Time = %.3f \nClock Time = %.3f\n', obj.curSimTime, toc(t));
             end
             stop(drawTimer);
             
-            disp(sprintf('Sim Time = %.3f\nClock Time = %.3f', obj.curSimTime, toc(t)));
+%             fprintf('Sim Time = %.3f\nClock Time = %.3f', obj.curSimTime, toc(t));
         end
         
         function updateGraphics(obj)

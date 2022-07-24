@@ -74,7 +74,8 @@ classdef NNS_BasicPowerGenerator < NNS_AbstractPowerSource
             fH = @(src,evt) obj.compUpdated(src,evt, handlesForShipCompEditUI);
             pwrGenL = addlistener(obj,'maxPowerGen','PostSet',fH);
             
-            hFig = basicPowerGeneratorEditorGUI(obj);
+            app = basicPowerGeneratorEditorGUI_App(obj);
+            hFig = app.basicPowerGeneratorEditorGUI;
             hFig.CloseRequestFcn = @(src, evt) obj.powerGenEditorCloseReqFunc(src, evt, pwrGenL);
         end
         

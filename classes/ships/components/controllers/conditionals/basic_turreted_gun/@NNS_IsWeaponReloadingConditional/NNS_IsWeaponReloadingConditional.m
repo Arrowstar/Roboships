@@ -6,7 +6,7 @@ classdef NNS_IsWeaponReloadingConditional < NNS_AbstractControllerConditional
         gun NNS_AbstractGun
         
         cmdTitle char = 'Is Reloading?';
-        drawer NNS_AbstractControllerCommandDrawer
+        drawer NNS_IsWeaponReloadingConditionalDrawer
         
         condAns logical = false
     end
