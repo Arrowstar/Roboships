@@ -35,7 +35,15 @@ classdef NNS_BasicPropagator < matlab.mixin.SetGet
             obj.headingCntrlr.lowLimit = -1;
         end
         
-        function propagateOneStep(obj, timeStep, xLims, yLims)           
+        function propagateOneStep(obj, timeStep, xLims, yLims, usesPid)
+            arguments
+                obj NNS_BasicPropagator
+                timeStep double
+                xLims double
+                yLims double
+                usesPid(1,1) logical = true;
+            end
+
             %current state
             curPos = obj.stateMgr.position;
             curVel = obj.stateMgr.velocity;
@@ -51,8 +59,18 @@ classdef NNS_BasicPropagator < matlab.mixin.SetGet
             cdASide = obj.propObj.getRotCdA();
             
             %forces and torques
-            thrustMag = obj.getMaximumThrust();
-            torqueMag = obj.getMaximumTorque();
+            if(usesPid)
+                %if we are using PID controllers, then pass in the max
+                %thrust/torque because the controller will throttle it as
+                %needed
+                thrustMag = obj.getMaximumThrust();
+                torqueMag = obj.getMaximumTorque();
+            else
+                %if we're not using the pid controller, pass in the actual
+                %thrust and torque from engines/rudders/etc
+                thrustMag = obj.getCurrentThrust();
+                torqueMag = obj.getCurrentTorque();
+            end
             
             %setup and integrate
             obj.speedCntrlr.integral = 0;
@@ -65,7 +83,7 @@ classdef NNS_BasicPropagator < matlab.mixin.SetGet
             obj.headingCntrlr.dt = dt;
 
             y0 = [curPos(1), curVel(1), curPos(2), curVel(2), curHeading, curAngRate];
-            odefun = @(t,y) NNS_BasicPropagator.odefun(t,y, obj.stateMgr, mass, momInert, thrustMag, torqueMag, cdA, cdASide, obj.speedCntrlr, obj.headingCntrlr);
+            odefun = @(t,y) NNS_BasicPropagator.odefun(t,y, obj.stateMgr, mass, momInert, thrustMag, torqueMag, cdA, cdASide, obj.speedCntrlr, obj.headingCntrlr, usesPid);
             [y] = obj.iterator(odefun, tSeg, y0);
 %             [t,y] = ode45(odefun, tSeg, y0);
             
@@ -147,7 +165,7 @@ classdef NNS_BasicPropagator < matlab.mixin.SetGet
     end
 
     methods(Static)
-        function dydt = odefun(~,y, stateMgr, mass, momInert, thrustMag, torqueMag, CdA, CdASide, speedCntrlr, headingCntrlr)
+        function dydt = odefun(~,y, stateMgr, mass, momInert, thrustMag, torqueMag, CdA, CdASide, speedCntrlr, headingCntrlr, usesPid)
             stateMgr.position = [y(1);y(3)];
             stateMgr.velocity = [y(2);y(4)];
             stateMgr.heading = (y(5));
@@ -161,9 +179,13 @@ classdef NNS_BasicPropagator < matlab.mixin.SetGet
                 inputVel = -inputVel;
             end
             
-            linThrottle = 0;
-            if(thrustMag ~= 0)
-                linThrottle = speedCntrlr.doPID(inputVel);
+            if(usesPid)
+                linThrottle = 0;
+                if(thrustMag ~= 0)
+                    linThrottle = speedCntrlr.doPID(inputVel);
+                end
+            else
+                linThrottle = 1; %actual thrust mag gets computed from components' throttle
             end
             
             headingInput = stateMgr.heading;
@@ -181,9 +203,13 @@ classdef NNS_BasicPropagator < matlab.mixin.SetGet
                 end
             end
             
-            angThrottle = 0;
-            if(torqueMag ~= 0)
-                angThrottle = headingCntrlr.doPID(headingInput);
+            if(usesPid)
+                angThrottle = 0;
+                if(torqueMag ~= 0)
+                    angThrottle = headingCntrlr.doPID(headingInput);
+                end
+            else
+                angThrottle = 1; %actual torque figured from components directly
             end
             
             %thrust

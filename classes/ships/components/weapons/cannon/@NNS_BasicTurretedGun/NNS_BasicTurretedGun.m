@@ -1,4 +1,4 @@
-classdef NNS_BasicTurretedGun < NNS_AbstractGun & NNS_AbstractPointableComponent & NNS_AbstractPoweredComponent
+classdef NNS_BasicTurretedGun < NNS_AbstractGun & NNS_AbstractPointableComponent & NNS_AbstractPoweredComponent & NNS_NeuralNetworkCapable
     %NNS_BasicTurretedGun A basic gun that can rotate itself and shoot
     %projectiles
     
@@ -113,7 +113,6 @@ classdef NNS_BasicTurretedGun < NNS_AbstractGun & NNS_AbstractPointableComponent
                 projectile.stateMgr.position = pos;
                 projectile.stateMgr.velocity = absVelVector;
 
-
                 obj.propObjs.addPropagatedObject(projectile);
 
                 obj.lastShotTime = curTime;
@@ -178,6 +177,31 @@ classdef NNS_BasicTurretedGun < NNS_AbstractGun & NNS_AbstractPointableComponent
             comps = obj.ship.components.getGunComponents();
             ind = find(comps == obj,1,'first');
             str = sprintf('Wpn[%i]',ind);
+        end
+
+        function obsInfo = getObservationInfo(obj)
+            obsInfo = rlNumericSpec([1, 2]);
+            obsInfo.Name = sprintf('%s: [Pointing Angle, Is Loaded]', obj.getShortCompName());
+
+            %
+        end
+
+        function obs = getObservation(obj)
+            pntAngle = obj.getAbsPntingAngle() / (2*pi);
+            isLoaded = 1;
+            
+            obs = {[pntAngle, isLoaded]};
+        end
+
+        function actInfo = getActionInfo(obj)
+            actInfo = rlFiniteSetSpec([0 1]);
+            actInfo.Name = sprintf('%s: [Fire Gun]', obj.getShortCompName());
+        end
+
+        function execAction(obj, action, curTime)
+            if(action == 1)
+                obj.fireGun(curTime);
+            end
         end
     end
     

@@ -37,6 +37,7 @@ classdef NNS_BasicShipController < NNS_AbstractShipController & NNS_AbstractPowe
             obj.allSubroutines(1).executeNextOp();
         end
         
+        %If ind = 0, return main, else if ind > 0, then return that subroutine from the list
         function subroutine = getSubroutineForIndex(obj,ind)
             subroutine = obj.allSubroutines(ind);
         end
@@ -57,17 +58,7 @@ classdef NNS_BasicShipController < NNS_AbstractShipController & NNS_AbstractPowe
         function removeSubroutine(obj,subR)
             obj.allSubroutines(obj.allSubroutines == subR) = [];
         end
-        
-        function ind = getControllerInd(obj)
-            cntrlrComps = obj.ship.components.getControllerComps();
-            ind = find(cntrlrComps == obj,1,'first');
-        end
-        
-        function str = getShortCompName(obj)
-            ind = obj.getControllerInd();
-            str = sprintf('Ctr[%i]',ind);
-        end
-        
+                
         function vars = getVariableList(obj)
             vars = obj.variables;
         end
@@ -121,6 +112,10 @@ classdef NNS_BasicShipController < NNS_AbstractShipController & NNS_AbstractPowe
         
         function radius = getCompRadiusForPower(obj)
             radius = 0.25;
+        end
+
+        function tf = usesPidController(obj)
+            tf = true;
         end
     end
     

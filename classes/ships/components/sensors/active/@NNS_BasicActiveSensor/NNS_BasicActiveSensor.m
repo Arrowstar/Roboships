@@ -1,4 +1,4 @@
-classdef NNS_BasicActiveSensor < NNS_AbstractSensor & NNS_AbstractPointableComponent & NNS_AbstractPoweredComponent
+classdef NNS_BasicActiveSensor < NNS_AbstractSensor & NNS_AbstractPointableComponent & NNS_AbstractPoweredComponent & NNS_NeuralNetworkCapable
     %NNS_BasicActiveSensor Summary of this class goes here
        
     properties
@@ -242,6 +242,38 @@ classdef NNS_BasicActiveSensor < NNS_AbstractSensor & NNS_AbstractPointableCompo
             comps = obj.ship.components.getSensorComponents();
             ind = find(comps == obj,1,'first');
             str = sprintf('Sen[%i]',ind);
+        end
+
+        function obsInfo = getObservationInfo(obj)
+            obsInfo = rlNumericSpec([1, 3]);
+            obsInfo.Name = sprintf('%s: [Is object detected, range, bearing]', obj.getShortCompName());
+        end
+
+        function obs = getObservation(obj)
+            sensorOutput = obj.getSensorOutput();
+            if(~isempty(sensorOutput) && length(sensorOutput.outputs)>0) %#ok<ISMT>
+                output = sensorOutput.outputs(1);
+
+                isDetected = double(output.detected);
+                range = output.range / sqrt(100^2 + 100^2);
+                bearing = output.bearing / (2*pi);
+            else
+                isDetected = 0;
+                range = 0;
+                bearing = 0;
+            end
+
+            obs = {[isDetected, range, bearing]};
+        end
+
+        function actInfo = getActionInfo(obj)
+            actInfo = rlFiniteSetSpec(deg2rad([-10 -1 0 1 10]));
+            actInfo.Name = sprintf('%s: Delta Sensor Heading', obj.getShortCompName());            
+        end
+
+        function execAction(obj, action, curTime)
+            obj.pointingBearing = angleZero2Pi(obj.pointingBearing + action);
+            obj.querySensor();
         end
     end
     

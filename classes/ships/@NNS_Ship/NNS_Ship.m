@@ -1,4 +1,4 @@
-classdef NNS_Ship < NNS_PropagatedObject & NNS_ShootableObject & NNS_IsDetectable & NNS_SaveableObject
+classdef NNS_Ship < NNS_PropagatedObject & NNS_ShootableObject & NNS_IsDetectable & NNS_SaveableObject & NNS_NeuralNetworkCapable
     %NNS_Ship Represents a ship on the battlefield.
     
     properties
@@ -58,7 +58,6 @@ classdef NNS_Ship < NNS_PropagatedObject & NNS_ShootableObject & NNS_IsDetectabl
                     mass = mass + comps(i).getMass();
                 end
             end
-            a = 1;
         end
         
         function momInert = getMomentOfInertia(obj)
@@ -113,7 +112,8 @@ classdef NNS_Ship < NNS_PropagatedObject & NNS_ShootableObject & NNS_IsDetectabl
                 cntrlrs(i).executeNextOperation();
             end
             
-            obj.basicPropagator.propagateOneStep(timeStep, obj.arena.xLims, obj.arena.yLims);
+            usesPid = obj.usesPidControllers();
+            obj.basicPropagator.propagateOneStep(timeStep, obj.arena.xLims, obj.arena.yLims, usesPid);
         end     
        
         function drawObjectToAxes(obj, hAxes)
@@ -151,8 +151,72 @@ classdef NNS_Ship < NNS_PropagatedObject & NNS_ShootableObject & NNS_IsDetectabl
         function health = getPlayerHealth(obj)
             health = obj.hull.getCurHitPoints();
         end
+
+        function tf = usesPidControllers(obj)
+            controllerComps = obj.components.getControllerComps();
+            tf = any(usesPidController(controllerComps));
+        end
+
+        %% Neural Network functions
+        function obsInfo = getObservationInfo(obj)
+            obsInfo = rlNumericSpec([1 8]);
+            obsInfo.Name = '[time, x, y, vx, vy, heading, angVel, health]';
+
+            %loop over components here
+            nnComps = obj.components.getNeuralNetworkCapableComponents();
+            for(i=1:length(nnComps))
+                nnComp = nnComps(i);
+                compObsInfo = nnComp.getObservationInfo();
+
+                if(not(isempty(compObsInfo)))
+                    obsInfo(end+1) = compObsInfo; %#ok<AGROW> 
+                end
+            end
+        end
+
+        function obs = getObservation(obj)
+            time = obj.arena.simClock.curSimTime;
+            position = obj.stateMgr.position / max(abs(obj.arena.xLims));
+            velocity = obj.stateMgr.velocity / 10;
+            heading = obj.stateMgr.heading / (2*pi);
+            angVel = obj.stateMgr.angRate;
+            health = obj.getPlayerHealth() / obj.hull.getMaxHitPoints();
+
+            obs = {[time, position(:)', velocity(:)', heading, angVel, health]};
+
+            %loop over components here
+            nnComps = obj.components.getNeuralNetworkCapableComponents();
+            for(i=1:length(nnComps))
+                nnComp = nnComps(i);
+                compObsInfo = nnComp.getObservationInfo();
+
+                if(not(isempty(compObsInfo)))
+                    obs(end+1) = nnComp.getObservation(); %#ok<AGROW> 
+                end
+            end
+        end
+
+        function actInfo = getActionInfo(obj)
+            actInfo = rl.util.RLDataSpec.empty(1,0);
+
+            %loop over components here
+            nnComps = obj.components.getNeuralNetworkCapableComponents();
+            for(i=1:length(nnComps))
+                nnComp = nnComps(i);
+                compActInfo = nnComp.getActionInfo();
+
+                if(not(isempty(compActInfo)))
+                    actInfo(end+1) = compActInfo; %#ok<AGROW> 
+                end
+            end
+        end
+
+        function execAction(obj, action, curTime)
+            %noop
+        end
     end
     
+%% Static Methods
     methods(Static)
         function ship = createDefaultBasicShip(arena)
             ship = NNS_Ship('Untitled Ship');

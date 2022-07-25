@@ -1,5 +1,5 @@
 classdef NNS_BasicActiveSensorDetObjBearingControllerParam < NNS_ControllerComponentParameter
-    %NNS_BasicActiveSensorBearingControllerParameter Summary of this class goes here
+    %NNS_BasicActiveSensorDetObjBearingControllerParam Summary of this class goes here
     %   Detailed explanation goes here
     
     properties

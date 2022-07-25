@@ -1,4 +1,4 @@
-classdef NNS_BasicMineLayer < NNS_AbstractGun & NNS_AbstractPoweredComponent
+classdef NNS_BasicMineLayer < NNS_AbstractGun & NNS_AbstractPoweredComponent & NNS_NeuralNetworkCapable
     %NNS_BasicTurretedGun A basic gun that can rotate itself and shoot
     %projectiles
     
@@ -136,6 +136,28 @@ classdef NNS_BasicMineLayer < NNS_AbstractGun & NNS_AbstractPoweredComponent
             comps = obj.ship.components.getGunComponents();
             ind = find(comps == obj,1,'first');
             str = sprintf('Wpn[%i]',ind);
+        end
+
+        function obsInfo = getObservationInfo(obj)
+            obsInfo = rlNumericSpec([1, 1]);
+            obsInfo.Name = sprintf('%s: [Is Loaded]', obj.getShortCompName());
+        end
+
+        function obs = getObservation(obj)
+            isLoaded = 1;
+            
+            obs = {isLoaded};
+        end
+
+        function actInfo = getActionInfo(obj)
+            actInfo = rlFiniteSetSpec([0 1]);
+            actInfo.Name = sprintf('%s: [Lay Mine]', obj.getShortCompName());
+        end
+
+        function execAction(obj, action, curTime)
+            if(action == 1)
+                obj.fireGun(curTime);
+            end
         end
     end
     

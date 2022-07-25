@@ -12,6 +12,7 @@ classdef NNS_VehicleComponentList < matlab.mixin.SetGet
         sensorComps = NNS_AbstractSensor.empty(0,0);
         gunComps = NNS_AbstractGun.empty(0,0);
         ctrlrComps = NNS_AbstractShipController.empty(0,0);
+        nnComps
 
         drawableComps = NNS_AbstractDrawableVehicleComponent.empty(0,0);
     end
@@ -59,6 +60,10 @@ classdef NNS_VehicleComponentList < matlab.mixin.SetGet
             
             if(isa(comp,'NNS_AbstractDrawableVehicleComponent'))
                 obj.drawableComps = NNS_AbstractDrawableVehicleComponent.empty(0,0);
+            end
+
+            if(isa(comp, 'NNS_NeuralNetworkCapable'))
+                obj.nnComps = NNS_VehicleComponent.empty(0,0);
             end
         end
         
@@ -202,6 +207,20 @@ classdef NNS_VehicleComponentList < matlab.mixin.SetGet
                 drawableComps = obj.drawableComps;
             end
         end
-        
+
+        function nnComps = getNeuralNetworkCapableComponents(obj)
+            if(~isempty(obj.nnComps))
+                nnComps = obj.nnComps;
+            else
+                nnComps = NNS_VehicleComponent.empty(0,0);
+                for(i=1:length(obj.components))
+                    if(isa(obj.components(i),'NNS_NeuralNetworkCapable'))
+                        nnComps(end+1) = obj.components(i); %#ok<AGROW>
+                    end
+                end
+                
+                obj.nnComps = nnComps;
+            end
+        end
     end
 end

@@ -22,8 +22,11 @@ classdef NNS_SimulationDriver < matlab.mixin.SetGet
             %NSS_SimulationDriver Construct an instance of this class
             obj.propObjs = arena.propObjs;
             obj.arena = arena;
-            obj.fieldAxes = arena.getFigAxes();
             obj.showGraphics = showGraphics;
+
+            if(obj.showGraphics)
+                obj.fieldAxes = arena.getFigAxes();
+            end
             
             obj.clock = NNS_SimClock(0, 300, 0, 1/10);
             obj.arena.simClock = obj.clock;

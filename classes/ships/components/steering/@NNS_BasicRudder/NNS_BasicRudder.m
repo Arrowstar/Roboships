@@ -1,4 +1,4 @@
-classdef NNS_BasicRudder < NNS_AbstractRudder & NNS_AbstractPoweredComponent
+classdef NNS_BasicRudder < NNS_AbstractRudder & NNS_AbstractPoweredComponent & NNS_NeuralNetworkCapable
     %NNS_Rudder Provides rotational control of a vessel
     %   Detailed explanation goes here
     
@@ -65,6 +65,23 @@ classdef NNS_BasicRudder < NNS_AbstractRudder & NNS_AbstractPoweredComponent
             comps = obj.ship.components.getRudderComponents();
             ind = find(comps == obj,1,'first');
             str = sprintf('Rud[%i]',ind);
+        end
+
+        function obsInfo = getObservationInfo(obj)
+            obsInfo = [];
+        end
+
+        function obs = getObservation(obj)
+            obs = [];
+        end
+
+        function actInfo = getActionInfo(obj)
+            actInfo = rlFiniteSetSpec([-1 0 1]);
+            actInfo.Name = sprintf('%s: Basic Rudder Shift', obj.getShortCompName());
+        end
+
+        function execAction(obj, action, curTime)
+            obj.rudderShift = action;
         end
     end
     

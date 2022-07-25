@@ -64,6 +64,7 @@ classdef NNS_ComponentHierarchy < matlab.mixin.SetGet
             cH.categories(end+1) = controllersCat;
             
             cH.components(end+1) = NNS_HierarchyComponent(NNS_BasicShipController.typeName,controllersCat);
+            cH.components(end+1) = NNS_HierarchyComponent(NNS_NnAiShipController.typeName,controllersCat);
             cH.components(end+1) = NNS_HierarchyComponent(NNS_BasicActiveSensor.typeName,actSen);
             cH.components(end+1) = NNS_HierarchyComponent(NNS_BasicTurretedGun.typeName,weaponsCat);
             cH.components(end+1) = NNS_HierarchyComponent(NNS_BasicMineLayer.typeName,weaponsCat);
@@ -85,6 +86,8 @@ classdef NNS_ComponentHierarchy < matlab.mixin.SetGet
                     newComp = NNS_BasicMissileLauncher.getDefaultBasicMissileLauncher(ship);
                 case NNS_BasicShipController.typeName
                     newComp = NNS_BasicShipController.getDefaultBasicController(ship);
+                case NNS_NnAiShipController.typeName
+                    newComp = NNS_NnAiShipController(ship);
                 otherwise
                     newComp = [];
             end

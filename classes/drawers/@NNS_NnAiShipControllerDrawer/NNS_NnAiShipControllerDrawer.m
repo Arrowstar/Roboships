@@ -1,15 +1,15 @@
-classdef NNS_BasicShipControllerDrawer < NNS_AbstractPropagatedObjectDrawer
-    %NNS_BasicShipControllerDrawer Draws ships hulls in a basic way
+classdef NNS_NnAiShipControllerDrawer < NNS_AbstractPropagatedObjectDrawer
+    %NNS_NnAiShipControllerDrawer 
     
     properties
         ship NNS_PropagatedObject;
-        controller NNS_BasicShipController
+        controller NNS_NnAiShipController
 
         hP matlab.graphics.primitive.Transform;
     end
     
     methods
-        function obj = NNS_BasicShipControllerDrawer(ship, controller)
+        function obj = NNS_NnAiShipControllerDrawer(ship, controller)
             obj.ship = ship;
             obj.controller = controller;
         end
@@ -37,7 +37,7 @@ classdef NNS_BasicShipControllerDrawer < NNS_AbstractPropagatedObjectDrawer
             x = pgon.Vertices(:,1);
             y = pgon.Vertices(:,2);
             
-            p = fill(x,y, 'c', 'FaceAlpha',1, 'EdgeColor','k', 'EdgeAlpha',1.0, 'Parent',hgTransform);
+            p = fill(x,y, 'm', 'FaceAlpha',1, 'EdgeColor','k', 'EdgeAlpha',1.0, 'Parent',hgTransform);
         end
         
         function destroyGraphics(obj)

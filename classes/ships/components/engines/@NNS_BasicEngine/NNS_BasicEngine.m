@@ -1,4 +1,4 @@
-classdef NNS_BasicEngine < NNS_AbstractEngine & NNS_AbstractPoweredComponent
+classdef NNS_BasicEngine < NNS_AbstractEngine & NNS_AbstractPoweredComponent & NNS_NeuralNetworkCapable
     %NNS_Engine Provides linear (forward and backwards) thrust to objects
     %it is attached to.
     
@@ -65,6 +65,23 @@ classdef NNS_BasicEngine < NNS_AbstractEngine & NNS_AbstractPoweredComponent
             comps = obj.ship.components.getEngineComponents();
             ind = find(comps == obj,1,'first');
             str = sprintf('Eng[%i]',ind);
+        end
+
+        function obsInfo = getObservationInfo(obj)
+            obsInfo = [];
+        end
+
+        function obs = getObservation(obj)
+            obs = [];
+        end
+
+        function actInfo = getActionInfo(obj)
+            actInfo = rlFiniteSetSpec([0 1]);
+            actInfo.Name = sprintf('%s: Basic Engine Throttle', obj.getShortCompName());
+        end
+
+        function execAction(obj, action, curTime)
+            obj.throttle = action;
         end
     end
     

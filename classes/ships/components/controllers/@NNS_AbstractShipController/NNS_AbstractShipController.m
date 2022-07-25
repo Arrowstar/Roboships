@@ -1,4 +1,4 @@
-classdef(Abstract = true) NNS_AbstractShipController  < NNS_AbstractDrawableVehicleComponent
+classdef(Abstract = true) NNS_AbstractShipController < NNS_AbstractDrawableVehicleComponent
     %NNS_ControllerSubroutine Summary of this class goes here
     %   Detailed explanation goes here
        
@@ -11,9 +11,19 @@ classdef(Abstract = true) NNS_AbstractShipController  < NNS_AbstractDrawableVehi
             copiedComp = [];
             error('Ship controllers cannot be copied!');
         end 
+
+        function ind = getControllerInd(obj)
+            cntrlrComps = obj.ship.components.getControllerComps();
+            ind = find(cntrlrComps == obj,1,'first');
+        end
+        
+        function str = getShortCompName(obj)
+            ind = obj.getControllerInd();
+            str = sprintf('Ctr[%i]',ind);
+        end
+
+        tf = usesPidController(obj);
         
         executeNextOperation(obj);
-        
-%         subroutine = getSubroutineForIndex(obj,ind); %If ind = 0, return main, else if ind > 0, then return that subroutine from the list
     end
 end
