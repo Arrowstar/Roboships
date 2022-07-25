@@ -28,7 +28,7 @@ classdef NNS_SimulationDriver < matlab.mixin.SetGet
                 obj.fieldAxes = arena.getFigAxes();
             end
             
-            obj.clock = NNS_SimClock(0, 300, 0, 1/10);
+            obj.clock = NNS_SimClock(0, 300, 0, 1/15);
             obj.arena.simClock = obj.clock;
         end
         
@@ -130,9 +130,9 @@ classdef NNS_SimulationDriver < matlab.mixin.SetGet
 %                     drawnow limitrate;
 %                 end
 
-                clc;
-                fprintf('Sim Time = %.3f \nClock Time = %.3f\n', obj.curSimTime, toc(t));
-                obj.arena.scorekeeper.printOutScores();
+%                 clc;
+%                 fprintf('Sim Time = %.3f \nClock Time = %.3f\n', obj.curSimTime, toc(t));
+%                 obj.arena.scorekeeper.printOutScores();
             end
             stop(drawTimer);
             

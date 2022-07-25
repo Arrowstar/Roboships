@@ -26,7 +26,10 @@ classdef NNS_Scorekeeper < matlab.mixin.SetGet
 
         function addPointsForPlayer(obj, player, newPoints)
             row = obj.scoreBoardRows(player == [obj.scoreBoardRows.player]);
-            row.addToScore(newPoints);
+            
+            if(not(isempty(row)))
+                row.addToScore(newPoints);
+            end
         end
         
         function score = getScoreForPlayer(obj, player)

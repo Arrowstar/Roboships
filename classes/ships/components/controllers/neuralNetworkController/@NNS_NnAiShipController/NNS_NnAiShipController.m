@@ -118,5 +118,9 @@ classdef NNS_NnAiShipController < NNS_AbstractShipController & NNS_AbstractPower
         function tf = usesPidController(obj)
             tf = false;
         end
+
+        function agent = getAgent(obj)
+            agent = obj.rlAgent;
+        end
     end
 end

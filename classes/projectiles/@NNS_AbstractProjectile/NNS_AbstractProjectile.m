@@ -50,7 +50,7 @@ classdef(Abstract = true) NNS_AbstractProjectile < NNS_PropagatedObject & NNS_Is
                         obj.awardMinRngPoints();
 
                         obj.setInactiveAndRemove();
-                        fprintf('Projectile from %s has hit %s\n', obj.ownerShip.name, shootPropObj.name);
+%                         fprintf('Projectile from %s has hit %s\n', obj.ownerShip.name, shootPropObj.name);
                     end
                 end
             end

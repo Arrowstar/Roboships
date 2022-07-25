@@ -19,7 +19,7 @@ classdef NNS_BasicActiveSensorSetBearingCntrlrOperation < NNS_AbstractController
         end
         
         function executeOperation(obj)
-            obj.sensor.pointingBearing = deg2rad(obj.desiredBearing.getValue());
+            obj.sensor.pointingBearing = angleZero2Pi(deg2rad(obj.desiredBearing.getValue()));
         end
         
         function tf = requiresTimeStep(obj) %#ok<MANU>

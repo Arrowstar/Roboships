@@ -19,7 +19,7 @@ classdef NNS_BasicTurretedGunSetBearingCntrlrOperation < NNS_AbstractControllerO
         end
         
         function executeOperation(obj)
-            obj.gun.pointingBearing = deg2rad(obj.desiredBearing.getValue());
+            obj.gun.pointingBearing = angleZero2Pi(deg2rad(obj.desiredBearing.getValue()));
         end
         
         function tf = requiresTimeStep(obj) %#ok<MANU>
