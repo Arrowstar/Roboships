@@ -8,6 +8,7 @@ classdef NNS_Arena < matlab.mixin.SetGet
         
         propObjs NNS_PropagatedObjectList
         simClock NNS_SimClock
+        scorekeeper NNS_Scorekeeper
     end
     
     methods
@@ -18,6 +19,7 @@ classdef NNS_Arena < matlab.mixin.SetGet
             obj.yLims = yLims;
             
             obj.propObjs = NNS_PropagatedObjectList();
+            obj.scorekeeper = NNS_Scorekeeper();
         end
     end
     

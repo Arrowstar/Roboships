@@ -1,4 +1,4 @@
-classdef NNS_Ship < NNS_PropagatedObject & NNS_ShootableObject & NNS_IsDetectable & NNS_SaveableObject & NNS_NeuralNetworkCapable
+classdef NNS_Ship < NNS_PropagatedObject & NNS_ShootableObject & NNS_IsDetectable & NNS_SaveableObject & NNS_NeuralNetworkCapable & NNS_TracksScore
     %NNS_Ship Represents a ship on the battlefield.
     
     properties
@@ -155,6 +155,14 @@ classdef NNS_Ship < NNS_PropagatedObject & NNS_ShootableObject & NNS_IsDetectabl
         function tf = usesPidControllers(obj)
             controllerComps = obj.components.getControllerComps();
             tf = any(usesPidController(controllerComps));
+        end
+
+        function addPointsToScore(obj, newPoints)
+            obj.arena.scorekeeper.addPointsForPlayer(obj, newPoints);
+        end
+        
+        function score = getCurrentScore(obj)
+            score = obj.arena.scorekeeper.getScoreForPlayer(obj);
         end
 
         %% Neural Network functions

@@ -70,12 +70,20 @@ classdef NNS_SimulationDriver < matlab.mixin.SetGet
         %Keep max time as a fail safe though!
         function driveSimulation(obj)
             obj.curSimTime = obj.startTime;
+
+            obj.arena.scorekeeper.removeAllPlayers();
             
             for(i=obj.propObjs.getLength():-1:1)
-                if(isa(obj.propObjs.getObj(i),'NNS_AbstractProjectile'))
-                    obj.propObjs.removePropObj(obj.propObjs.getObj(i));
+                propObj = obj.propObjs.getObj(i);
+
+                if(isa(propObj,'NNS_AbstractProjectile'))
+                    obj.propObjs.removePropObj(propObj);
                 else
-                    obj.propObjs.getObj(i).inializePropObj();
+                    propObj.inializePropObj();
+                end
+
+                if(isa(propObj,'NNS_Ship'))
+                    obj.arena.scorekeeper.addPlayer(propObj);
                 end
             end
             
@@ -122,7 +130,9 @@ classdef NNS_SimulationDriver < matlab.mixin.SetGet
 %                     drawnow limitrate;
 %                 end
 
+                clc;
                 fprintf('Sim Time = %.3f \nClock Time = %.3f\n', obj.curSimTime, toc(t));
+                obj.arena.scorekeeper.printOutScores();
             end
             stop(drawTimer);
             

@@ -8,7 +8,7 @@ classdef NNS_BasicActiveSensor < NNS_AbstractSensor & NNS_AbstractPointableCompo
         ship
         
         %utilty
-        isaDetectable function_handle;
+        isaDetectable function_handle
         lastSensorOutput NNS_SensorOutput
         id double
     end
@@ -22,8 +22,8 @@ classdef NNS_BasicActiveSensor < NNS_AbstractSensor & NNS_AbstractPointableCompo
         
         maxRng double             = 25; % m
         maxConeAngle double
-        threeSigRngDevPercent double         %0 -> 1.0
-        threeSigAngDevPercent double         %0 -> 1.0
+        threeSigRngDevPercent double    %0 -> 1.0
+        threeSigAngDevPercent double    %0 -> 1.0
 
         relPos double  = [0;0];         % m - relative to the origin of vessel it's mounted on
     end
@@ -31,10 +31,12 @@ classdef NNS_BasicActiveSensor < NNS_AbstractSensor & NNS_AbstractPointableCompo
     properties(Constant)
         typeName char = 'Basic Active Radar';
         
-        maxAllowableMaxRange double = 50;
-        maxAllowableMaxConeAngle double = deg2rad(180);
-        maxAllowableThreeSigRngDevPercent double = 0.1;
-        maxAllowableThreeSigAngDevPercent double = 0.1;
+        maxAllowableMaxRange(1,1) double = 50;
+        maxAllowableMaxConeAngle(1,1) double = deg2rad(180);
+        maxAllowableThreeSigRngDevPercent(1,1) double = 0.1;
+        maxAllowableThreeSigAngDevPercent(1,1) double = 0.1;
+
+        detectedPtsPerTimeStep(1,1) double = 0.1;
     end
     
     methods
@@ -136,6 +138,10 @@ classdef NNS_BasicActiveSensor < NNS_AbstractSensor & NNS_AbstractPointableCompo
                 if(tf == true)
                     outputRow = NNS_SensorOutputRow(obj, propObj, tf, rng, bearing);
                     sensorOutput.addQueryResult(i, outputRow);
+
+                    if(isa(obj.ship, 'NNS_TracksScore'))
+                        obj.ship.addPointsToScore(obj.detectedPtsPerTimeStep);
+                    end
                 end
             end
             sensorOutput.trimEmpty();

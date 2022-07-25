@@ -63,7 +63,7 @@ classdef NNS_VehicleComponentList < matlab.mixin.SetGet
             end
 
             if(isa(comp, 'NNS_NeuralNetworkCapable'))
-                obj.nnComps = NNS_VehicleComponent.empty(0,0);
+                obj.nnComps = [];
             end
         end
         

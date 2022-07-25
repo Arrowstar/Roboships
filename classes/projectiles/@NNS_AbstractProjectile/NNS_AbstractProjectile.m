@@ -2,7 +2,7 @@ classdef(Abstract = true) NNS_AbstractProjectile < NNS_PropagatedObject & NNS_Is
     %NNS_AbstractProjectile Summary of this class goes here
     
     properties
-        ownerShip NNS_PropagatedObject
+        ownerShip NNS_Ship
         effectiveRng double = 0; 
     end
     
@@ -47,8 +47,10 @@ classdef(Abstract = true) NNS_AbstractProjectile < NNS_PropagatedObject & NNS_Is
                         explosionEffect = NNS_ExplosionEffect(shootPropObj, relPosToShip, createTime);
                         obj.propObjs.addPropagatedObject(explosionEffect);
                         
+                        obj.awardMinRngPoints();
+
                         obj.setInactiveAndRemove();
-%                         fprintf('Projectile from %s has hit %s\n', obj.ownerShip.name, shootPropObj.name);
+                        fprintf('Projectile from %s has hit %s\n', obj.ownerShip.name, shootPropObj.name);
                     end
                 end
             end
