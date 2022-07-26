@@ -116,6 +116,11 @@ classdef NNS_BasicTurretedGun < NNS_AbstractGun & NNS_AbstractPointableComponent
                 obj.propObjs.addPropagatedObject(projectile);
 
                 obj.lastShotTime = curTime;
+
+                if(isa(obj.ship, 'NNS_TracksScore'))
+                    penalty = -0.02*obj.baseDamage;
+                    obj.ship.addPointsToScore(penalty);
+                end
             end
         end
         

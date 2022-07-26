@@ -56,14 +56,20 @@ function f = gaObjFunc(x, simDriver, nnShip)
         nnShip NNS_Ship
     end
 
-    %get the RL agent we're training and set its learnable values
-    controllers = nnShip.components.getControllerComps();
-    agent = controllers(1).getAgent();
-    setXVectFromActor(agent, x);
+    numRuns = 2;
+    f = NaN(1,numRuns);
+    for(i=1:numRuns) %#ok<*NO4LP> 
+        %get the RL agent we're training and set its learnable values
+        controllers = nnShip.components.getControllerComps();
+        agent = controllers(1).getAgent();
+        setXVectFromActor(agent, x);
+    
+        %drive simulation
+        simDriver.driveSimulation();
+    
+        %retrieve score
+        f(i) = -simDriver.arena.scorekeeper.getScoreForPlayer(nnShip);
+    end
 
-    %drive simulation
-    simDriver.driveSimulation();
-
-    %retrieve score
-    f = -simDriver.arena.scorekeeper.getScoreForPlayer(nnShip);
+    f = mean(f);
 end

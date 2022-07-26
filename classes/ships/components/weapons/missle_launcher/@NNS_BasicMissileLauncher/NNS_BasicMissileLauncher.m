@@ -97,6 +97,11 @@ classdef NNS_BasicMissileLauncher < NNS_AbstractGun & NNS_AbstractPointableCompo
                 obj.propObjs.addPropagatedObject(missile);
 
                 obj.lastShotTime = curTime;
+
+                if(isa(obj.ship, 'NNS_TracksScore'))
+                    penalty = -0.02*obj.baseDamage;
+                    obj.ship.addPointsToScore(penalty);
+                end
             end
         end
         
