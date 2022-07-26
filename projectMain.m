@@ -100,7 +100,8 @@ function [state,options,optchanged] = gaOutputFunc(options,state,flag, nnShip)
             mkdir(folder);
         end
 
-        save(filepath, 'nnShip');
+        ship = nnShip;
+        save(filepath, 'ship');
     end
 
     optchanged = false;
