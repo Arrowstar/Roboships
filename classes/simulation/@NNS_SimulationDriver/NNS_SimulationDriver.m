@@ -28,7 +28,7 @@ classdef NNS_SimulationDriver < matlab.mixin.SetGet
                 obj.fieldAxes = arena.getFigAxes();
             end
             
-            obj.clock = NNS_SimClock(0, 300, 0, 1/10);
+            obj.clock = NNS_SimClock(0, 180, 0, 1/10);
             obj.arena.simClock = obj.clock;
         end
         
@@ -84,6 +84,7 @@ classdef NNS_SimulationDriver < matlab.mixin.SetGet
 
                 if(isa(propObj,'NNS_Ship'))
                     obj.arena.scorekeeper.addPlayer(propObj);
+                    propObj.clearMassCache();
                 end
             end
             

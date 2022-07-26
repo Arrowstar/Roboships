@@ -11,6 +11,8 @@ classdef NNS_Ship < NNS_PropagatedObject & NNS_ShootableObject & NNS_IsDetectabl
         components NNS_VehicleComponentList
         basicPropagator NNS_BasicPropagator
         arena NNS_Arena
+
+        massCache(1,1) double = NaN;
     end
     
     methods
@@ -50,14 +52,25 @@ classdef NNS_Ship < NNS_PropagatedObject & NNS_ShootableObject & NNS_IsDetectabl
         end
                 
         function mass = getMass(obj)
-            mass = obj.hull.getMass();
-            
-            comps = obj.components.components;
-            for(i=1:length(comps))
-                if(not(isa(comps(i),'NNS_AbstractHull')))
-                    mass = mass + comps(i).getMass();
+            if(isnan(obj.massCache))
+                mass = obj.hull.getMass();
+                
+                comps = obj.components.components;
+                for(i=1:length(comps))
+                    if(not(isa(comps(i),'NNS_AbstractHull')))
+                        mass = mass + comps(i).getMass();
+                    end
                 end
+
+                obj.massCache = mass;
+
+            else
+                mass = obj.massCache;
             end
+        end
+
+        function clearMassCache(obj)
+            obj.massCache = NaN;
         end
         
         function momInert = getMomentOfInertia(obj)

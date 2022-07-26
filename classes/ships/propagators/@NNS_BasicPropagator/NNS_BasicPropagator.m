@@ -11,7 +11,7 @@ classdef NNS_BasicPropagator < matlab.mixin.SetGet
         
         numSubsteps double = 2;
         
-        iterator function_handle = @(odefun,tspan,y0) ode4(odefun,tspan,y0);
+        iterator function_handle = @(odefun,tspan,y0) ode2(odefun,tspan,y0);
     end
     
     methods
@@ -171,10 +171,12 @@ classdef NNS_BasicPropagator < matlab.mixin.SetGet
             stateMgr.heading = (y(5));
             stateMgr.angRate = y(6);
             
+            headingUnitVect = stateMgr.getHeadingUnitVector();
+
             %Throttles
             inputVel = norm(stateMgr.velocity);
             a = [stateMgr.velocity;0];
-            b = [stateMgr.getHeadingUnitVector();0];
+            b = [headingUnitVect;0];
             if(abs(dang(a, b)) > pi/2)
                 inputVel = -inputVel;
             end
@@ -215,14 +217,14 @@ classdef NNS_BasicPropagator < matlab.mixin.SetGet
             %thrust
             thrustVector = [0;0];
             if(linThrottle~=0)
-                thrustVector = linThrottle * thrustMag * stateMgr.getHeadingUnitVector();
+                thrustVector = linThrottle * thrustMag * headingUnitVect;
             end
                         
             %drag
             if(CdA == CdASide)
                 adjustedCdA = CdA;
             else
-                a = [stateMgr.getHeadingUnitVector();0];
+                a = [headingUnitVect;0];
                 b = [stateMgr.velocity;0];
                 sideSlipAng = dang(a, b);
                 x1 = 1;

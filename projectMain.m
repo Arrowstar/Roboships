@@ -48,6 +48,10 @@ options = optimoptions("ga", "PopulationSize",12, "UseParallel",true, "Display",
 setXVectFromActor(agent, x);
 save('nn_ship_solved.mat','ship');
 
+% profile off; profile('on', '-historysize',500000000);
+% fun(x);
+% profile viewer;
+
 %% Helper Method
 function f = gaObjFunc(x, simDriver, nnShip)
     arguments
