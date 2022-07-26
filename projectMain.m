@@ -45,6 +45,9 @@ x = getXVectFromActor(agent);
 options = optimoptions("ga", "PopulationSize",12, "UseParallel",true, "Display","iter", "PlotFcn",{'gaplotscorediversity', 'gaplotbestf', 'gaplotdistance'}, 'MaxGenerations',2000, "FunctionTolerance",0);
 [x,fval,exitflag,output,population,scores] = ga(fun,numel(x),[],[],[],[],[],[],[],options);
 
+setXVectFromActor(agent, x);
+save('nn_ship_solved.mat','ship');
+
 %% Helper Method
 function f = gaObjFunc(x, simDriver, nnShip)
     arguments
