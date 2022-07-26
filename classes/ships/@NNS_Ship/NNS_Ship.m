@@ -183,7 +183,7 @@ classdef NNS_Ship < NNS_PropagatedObject & NNS_ShootableObject & NNS_IsDetectabl
         end
 
         function obs = getObservation(obj)
-            time = obj.arena.simClock.curSimTime;
+            time = obj.arena.simClock.curSimTime / obj.arena.simClock.endTime;
             position = obj.stateMgr.position / max(abs(obj.arena.xLims));
             velocity = obj.stateMgr.velocity / 10;
             heading = obj.stateMgr.heading / (2*pi);
