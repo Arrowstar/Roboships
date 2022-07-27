@@ -98,10 +98,10 @@ classdef NNS_BasicMissileLauncher < NNS_AbstractGun & NNS_AbstractPointableCompo
 
                 obj.lastShotTime = curTime;
 
-                if(isa(obj.ship, 'NNS_TracksScore'))
-                    penalty = -0.02*obj.baseDamage;
-                    obj.ship.addPointsToScore(penalty);
-                end
+%                 if(isa(obj.ship, 'NNS_TracksScore'))
+%                     penalty = -0.02*obj.baseDamage;
+%                     obj.ship.addPointsToScore(penalty);
+%                 end
             end
         end
         
@@ -171,12 +171,18 @@ classdef NNS_BasicMissileLauncher < NNS_AbstractGun & NNS_AbstractPointableCompo
         end
 
         function actInfo = getActionInfo(obj)
-            actInfo = rlFiniteSetSpec([0 1]);
-            actInfo.Name = sprintf('%s: [Launch Missle]', obj.getShortCompName());
+            a = deg2rad([-10 -1 0 1 10]);
+            b = [0 1];
+            actions = num2cell(combvec(a,b)',2);
+
+            actInfo = rlFiniteSetSpec(actions);
+            actInfo.Name = sprintf('%s: [Delta Launcher Heading, Launch Missile]', obj.getShortCompName());  
         end
 
         function execAction(obj, action, curTime)
-            if(action == 1)
+            obj.pointingBearing = angleZero2Pi(obj.pointingBearing + action(1));
+
+            if(action(2) == 1)
                 obj.fireGun(curTime);
             end
         end

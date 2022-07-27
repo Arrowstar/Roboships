@@ -83,10 +83,10 @@ classdef NNS_BasicMineLayer < NNS_AbstractGun & NNS_AbstractPoweredComponent & N
 
                 obj.lastShotTime = curTime;
 
-                if(isa(obj.ship, 'NNS_TracksScore'))
-                    penalty = -0.02*obj.baseDamage;
-                    obj.ship.addPointsToScore(penalty);
-                end
+%                 if(isa(obj.ship, 'NNS_TracksScore'))
+%                     penalty = -0.02*obj.baseDamage;
+%                     obj.ship.addPointsToScore(penalty);
+%                 end
             end
         end
         
