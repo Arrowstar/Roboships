@@ -11,7 +11,7 @@ classdef NNS_BasicPropagator < matlab.mixin.SetGet
         
         numSubsteps double = 2;
         
-        iterator function_handle = @(odefun,tspan,y0) ode2(odefun,tspan,y0);
+        iterator function_handle = @(odefun,tspan,y0) ode1(odefun,tspan,y0);
     end
     
     methods

@@ -43,7 +43,7 @@ controllers = ship.components.getControllerComps();
 agent = controllers(1).getAgent();
 x = getXVectFromActor(agent);
 
-options = optimoptions("ga", "PopulationSize",8, "UseParallel",true, "OutputFcn",outputFunc, "Display","iter", "PlotFcn",{'gaplotscorediversity', 'gaplotbestf', 'gaplotdistance'}, 'MaxGenerations',2000, "FunctionTolerance",0);
+options = optimoptions("ga", "PopulationSize",512, "UseParallel",true, "OutputFcn",outputFunc, "Display","iter", "PlotFcn",{'gaplotscorediversity', 'gaplotbestf', 'gaplotdistance'}, 'MaxGenerations',2000, "FunctionTolerance",0, "FitnessScalingFcn","fitscalingprop", "CrossoverFcn","crossoverheuristic");
 [x,fval,exitflag,output,population,scores] = ga(fun,numel(x),[],[],[],[],[],[],[],options);
 
 setXVectFromActor(agent, x);
@@ -61,7 +61,7 @@ function f = gaObjFunc(x, simDriver, nnShip)
         nnShip NNS_Ship
     end
 
-    numRuns = 1;
+    numRuns = 2;
     f = NaN(1,numRuns);
     for(i=1:numRuns) %#ok<*NO4LP> 
         %get the RL agent we're training and set its learnable values
