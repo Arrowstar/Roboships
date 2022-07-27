@@ -29,9 +29,24 @@ classdef NNS_NnAiShipController < NNS_AbstractShipController & NNS_AbstractPower
             obsInfo = obj.ship.getObservationInfo();
             actInfo = obj.ship.getActionInfo();
 
+            actInfoElems = {};
             for(i=1:length(actInfo))
-                actInfoElems{i} = actInfo(i).Elements(:)'; %#ok<AGROW> 
+                actInfoElem = actInfo(i).Elements(:);
+                if(iscell(actInfoElem))
+                    actionsMat = cell2mat(actInfoElem);
+                    for(j=1:width(actionsMat))
+                        actionsMatSub = unique(actionsMat(:,j));
+                        actInfoElems{end+1} = actionsMatSub(:)'; %#ok<AGROW> 
+                    end
+
+                elseif(isnumeric(actInfoElem))
+                    actInfoElems{end+1} = actInfoElem(:)'; %#ok<AGROW> 
+
+                else
+                    error('Problem!');
+                end
             end
+
             actions = num2cell(combvec(actInfoElems{:})', 2);
             actInfo = rlFiniteSetSpec(actions);
 

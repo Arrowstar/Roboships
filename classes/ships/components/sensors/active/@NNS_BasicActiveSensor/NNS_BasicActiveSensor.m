@@ -31,7 +31,7 @@ classdef NNS_BasicActiveSensor < NNS_AbstractSensor & NNS_AbstractPointableCompo
     properties(Constant)
         typeName char = 'Basic Active Radar';
         
-        maxAllowableMaxRange(1,1) double = 50;
+        maxAllowableMaxRange(1,1) double = 100;
         maxAllowableMaxConeAngle(1,1) double = deg2rad(180);
         maxAllowableThreeSigRngDevPercent(1,1) double = 0.1;
         maxAllowableThreeSigAngDevPercent(1,1) double = 0.1;
