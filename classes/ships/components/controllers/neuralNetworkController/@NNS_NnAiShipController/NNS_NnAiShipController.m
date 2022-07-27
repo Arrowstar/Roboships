@@ -73,8 +73,10 @@ classdef NNS_NnAiShipController < NNS_AbstractShipController & NNS_AbstractPower
 
                 if(not(isempty(compActInfo)))
                     numActions = prod(compActInfo.Dimension);
-                    subActions = actions(aInd : aInd + numActions -1);
+                    subActions = actions(aInd : aInd + numActions - 1);
                     nnComp.execAction(subActions, curTime);
+
+                    aInd = aInd + numActions;
                 end
             end
         end
