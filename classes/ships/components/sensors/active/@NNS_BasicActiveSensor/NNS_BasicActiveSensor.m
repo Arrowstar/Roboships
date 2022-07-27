@@ -36,7 +36,7 @@ classdef NNS_BasicActiveSensor < NNS_AbstractSensor & NNS_AbstractPointableCompo
         maxAllowableThreeSigRngDevPercent(1,1) double = 0.1;
         maxAllowableThreeSigAngDevPercent(1,1) double = 0.1;
 
-        detectedPtsPerTimeStep(1,1) double = 0.1;
+        detectedPtsPerTimeStep(1,1) double = 0.01;
     end
     
     methods
