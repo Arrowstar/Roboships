@@ -131,9 +131,9 @@ classdef NNS_SimulationDriver < matlab.mixin.SetGet
 %                     drawnow limitrate;
 %                 end
 
-                clc;
-                fprintf('Sim Time = %.3f \nClock Time = %.3f\n', obj.curSimTime, toc(t));
-                obj.arena.scorekeeper.printOutScores();
+%                 clc;
+%                 fprintf('Sim Time = %.3f \nClock Time = %.3f\n', obj.curSimTime, toc(t));
+%                 obj.arena.scorekeeper.printOutScores();
             end
             stop(drawTimer);
             
