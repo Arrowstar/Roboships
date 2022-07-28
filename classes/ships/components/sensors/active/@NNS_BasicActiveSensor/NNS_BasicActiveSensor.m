@@ -260,9 +260,21 @@ classdef NNS_BasicActiveSensor < NNS_AbstractSensor & NNS_AbstractPointableCompo
             if(~isempty(sensorOutput) && length(sensorOutput.outputs)>0) %#ok<ISMT>
                 output = sensorOutput.outputs(1);
 
+                if(isnan(output.range))
+                    rng = 0;
+                else
+                    rng = output.range;
+                end
+
+                if(isnan(output.bearing))
+                    brng = 0;
+                else
+                    brng = output.bearing;
+                end
+
                 isDetected = double(output.detected);
-                range = output.range / sqrt(100^2 + 100^2);
-                bearing = output.bearing / (2*pi);
+                range = rng / sqrt(100^2 + 100^2);
+                bearing = brng / (2*pi);
             else
                 isDetected = 0;
                 range = 0;

@@ -20,9 +20,15 @@ classdef NNS_ShipTeam < matlab.mixin.SetGet
             obj.id = id;
             obj.str = str;
         end
+    end
+
+    methods(Sealed)
+        function tf = eq(a,b)
+            tf = eq@handle(a,b);
+        end
         
-        function tf = eq(this, other)
-            tf = this.id == other.id;
+        function tf = ne(a,b)
+            tf = ne@handle(a,b);
         end
     end
     

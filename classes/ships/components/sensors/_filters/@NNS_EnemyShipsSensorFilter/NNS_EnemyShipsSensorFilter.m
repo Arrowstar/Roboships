@@ -2,8 +2,8 @@ classdef NNS_EnemyShipsSensorFilter < NNS_AbstractSensorFilter
     %NNS_AbstractSensorFilter Summary of this class goes here
     %   Detailed explanation goes here
     
-    properties
-        
+    properties(Constant)
+        typeEnum = NNS_SensorFilterEnum.EnemyShips
     end
     
     methods
@@ -15,7 +15,8 @@ classdef NNS_EnemyShipsSensorFilter < NNS_AbstractSensorFilter
             tf = false;
             if(isa(propObj,'NNS_Ship') && ...
                propObj ~= obj.sensor.ship && ...
-               not(propObj.team == obj.sensor.ship.team))
+               (not(propObj.team == obj.sensor.ship.team) || ...
+               obj.sensor.ship.team == NNS_ShipTeam.None))
                 tf = true;
             end
         end

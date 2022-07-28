@@ -2,8 +2,8 @@ classdef NNS_AnyShipsSensorFilter < NNS_AbstractSensorFilter
     %NNS_AbstractSensorFilter Summary of this class goes here
     %   Detailed explanation goes here
     
-    properties
-        
+    properties(Constant)
+        typeEnum = NNS_SensorFilterEnum.AnyShips
     end
     
     methods

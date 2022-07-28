@@ -47,6 +47,7 @@ classdef(Abstract = true) NNS_AbstractProjectile < NNS_PropagatedObject & NNS_Is
                         explosionEffect = NNS_ExplosionEffect(shootPropObj, relPosToShip, createTime);
                         obj.propObjs.addPropagatedObject(explosionEffect);
                         
+                        %TODO: Penalize hit ship for taking damage.
                         obj.awardMinRngPoints();
 
                         obj.setInactiveAndRemove();

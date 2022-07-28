@@ -1,9 +1,9 @@
 classdef NNS_NoneFilteredSensorFilter < NNS_AbstractSensorFilter
-    %NNS_AbstractSensorFilter Summary of this class goes here
+    %NNS_NoneFilteredSensorFilter Summary of this class goes here
     %   Detailed explanation goes here
     
-    properties
-        
+    properties(Constant)
+        typeEnum = NNS_SensorFilterEnum.NoFilter
     end
     
     methods

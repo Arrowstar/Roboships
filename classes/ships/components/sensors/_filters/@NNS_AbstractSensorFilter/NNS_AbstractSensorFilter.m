@@ -5,6 +5,10 @@ classdef(Abstract) NNS_AbstractSensorFilter < matlab.mixin.SetGet & matlab.mixin
     properties
         sensor NNS_AbstractSensor
     end
+
+    properties(Constant, Abstract)
+        typeEnum NNS_SensorFilterEnum
+    end
     
     methods
         tf = doesObjectMeetFilter(obj, propObj)

@@ -49,12 +49,12 @@ classdef (Abstract = true) NNS_PropagatedObject < matlab.mixin.SetGet & matlab.m
     end
     
     methods(Sealed)
-        function tf = eq(A,B)
-            tf = [A.id] == [B.id];
+        function tf = eq(a,b)
+            tf = eq@handle(a,b);
         end
         
-        function tf = ne(A,B)
-            tf = [A.id] ~= [B.id];
+        function tf = ne(a,b)
+            tf = ne@handle(a,b);
         end
     end
 end
