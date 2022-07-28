@@ -26,7 +26,7 @@ delete(timerfindall);
 %% Train Neural Network Ship
 arena = NNS_Arena([-50,50], [-50,50]);
 
-load('nn_ship.mat');
+load('nn_ship4.mat');
 ship.arena = arena;
 
 propObjs = NNS_PropagatedObjectList();
@@ -61,7 +61,7 @@ function f = gaObjFunc(x, simDriver, nnShip)
         nnShip NNS_Ship
     end
 
-    numRuns = 2;
+    numRuns = 4;
     f = NaN(1,numRuns);
     for(i=1:numRuns) %#ok<*NO4LP> 
         %get the RL agent we're training and set its learnable values
