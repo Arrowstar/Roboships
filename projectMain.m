@@ -89,7 +89,7 @@ function f = gaObjFunc(x, simDriver, nnShips)
     f = mean(f);
 end
 
-function [state,options,optchanged] = gaOutputFunc(options,state,flag, nnShip)
+function [state,options,optchanged] = gaOutputFunc(options,state,flag, nnShips)
     if(strcmpi(flag,'iter'))
         genNum = state.Generation;
 
@@ -97,7 +97,7 @@ function [state,options,optchanged] = gaOutputFunc(options,state,flag, nnShip)
         [bestScore,I] = min(scores);
         x = state.Population(I,:);
 
-        controllers = nnShip.components.getControllerComps();
+        controllers = nnShips(1).components.getControllerComps();
         agent = controllers(1).getAgent();
         setXVectFromActor(agent, x);
 
@@ -110,7 +110,7 @@ function [state,options,optchanged] = gaOutputFunc(options,state,flag, nnShip)
             mkdir(folder);
         end
 
-        ship = nnShip;
+        ship = nnShips(1);
         save(filepath, 'ship');
     end
 
