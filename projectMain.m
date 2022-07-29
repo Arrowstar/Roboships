@@ -6,7 +6,9 @@ clc; clear variables; format long g; close all force;
 warning('off', 'MATLAB:polyshape:repairedBySimplify');
 warning('off', 'MATLAB:structOnObject');
 warning('off', 'MATLAB:timer:miliSecPrecNotAllowed');
-pctRunOnAll warning('off', 'MATLAB:timer:miliSecPrecNotAllowed');
+if(not(isempty(gcp('nocreate'))))
+    pctRunOnAll warning('off', 'MATLAB:timer:miliSecPrecNotAllowed');
+end
 
 %% set pathes if not deployed
 if(~isdeployed) 
@@ -25,28 +27,34 @@ delete(timerfindall);
 
 %% Train Neural Network Ship
 arena = NNS_Arena([-50,50], [-50,50]);
+% propObjs = NNS_PropagatedObjectList();
 
-load('nn_ship4.mat');
-ship.arena = arena;
+numShips = 2;
+for(i=1:2)
+    load('nn_ship.mat');
+    ships(i) = ship; %#ok<SAGROW> 
 
-propObjs = NNS_PropagatedObjectList();
-arena.propObjs.addPropagatedObject(ship);
-arena.propObjs.addPropagatedObject(NNS_Ship.createDefaultBasicShip(arena));
+    ship.arena = arena;
+    
+    arena.propObjs.addPropagatedObject(ship);
+end
+% arena.propObjs.addPropagatedObject(NNS_Ship.createDefaultBasicShip(arena));
 
-simDriver = NNS_SimulationDriver(arena,false);
+simDriver = NNS_SimulationDriver(arena,true);
 
 %% Run GA to train agent
-fun = @(x) gaObjFunc(x, simDriver, ship);
-outputFunc = @(options,state,flag) gaOutputFunc(options,state,flag, ship);
+fun = @(x) gaObjFunc(x, simDriver, ships);
+outputFunc = @(options,state,flag) gaOutputFunc(options,state,flag, ships);
 
-controllers = ship.components.getControllerComps();
+controllers = ships(1).components.getControllerComps();
 agent = controllers(1).getAgent();
 x = getXVectFromActor(agent);
 
-options = optimoptions("ga", "PopulationSize",512, "UseParallel",true, "OutputFcn",outputFunc, "Display","iter", "PlotFcn",{'gaplotscorediversity', 'gaplotbestf', 'gaplotdistance'}, 'MaxGenerations',2000, "FunctionTolerance",0, "FitnessScalingFcn","fitscalingprop", "CrossoverFcn","crossoverheuristic");
+options = optimoptions("ga", "PopulationSize",4, "UseParallel",false, "OutputFcn",outputFunc, "Display","iter", "PlotFcn",{'gaplotscorediversity', 'gaplotbestf', 'gaplotdistance'}, 'MaxGenerations',2000, "FunctionTolerance",0, "FitnessScalingFcn","fitscalingprop", "CrossoverFcn","crossoverheuristic");
 [x,fval,exitflag,output,population,scores] = ga(fun,numel(x),[],[],[],[],[],[],[],options);
 
 setXVectFromActor(agent, x);
+ship = ships(1);
 save('nn_ship_solved.mat','ship');
 
 % profile off; profile('on', '-historysize',500000000);
@@ -54,26 +62,28 @@ save('nn_ship_solved.mat','ship');
 % profile viewer;
 
 %% Helper Method
-function f = gaObjFunc(x, simDriver, nnShip)
+function f = gaObjFunc(x, simDriver, nnShips)
     arguments
         x double
         simDriver NNS_SimulationDriver
-        nnShip NNS_Ship
+        nnShips NNS_Ship
     end
 
-    numRuns = 4;
+    numRuns = 1;
     f = NaN(1,numRuns);
     for(i=1:numRuns) %#ok<*NO4LP> 
         %get the RL agent we're training and set its learnable values
-        controllers = nnShip.components.getControllerComps();
-        agent = controllers(1).getAgent();
-        setXVectFromActor(agent, x);
+        for(j=1:numel(nnShips))
+            controllers = nnShips(j).components.getControllerComps();
+            agent = controllers(1).getAgent();
+            setXVectFromActor(agent, x);
+        end
     
         %drive simulation
         simDriver.driveSimulation();
     
         %retrieve score
-        f(i) = -simDriver.arena.scorekeeper.getScoreForPlayer(nnShip);
+        f(i) = -mean(simDriver.arena.scorekeeper.getScoresForAllRows());
     end
 
     f = mean(f);

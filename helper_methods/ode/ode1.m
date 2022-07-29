@@ -35,8 +35,8 @@ end
 
 try
   f0 = feval(odefun,tspan(1),y0,varargin{:});
-catch
-  msg = ['Unable to evaluate the ODEFUN at t0,y0. ',lasterr];
+catch ME
+  msg = ['Unable to evaluate the ODEFUN at t0,y0. ', ME.message];
   error(msg);  
 end  
 
