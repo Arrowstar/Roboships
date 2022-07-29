@@ -50,7 +50,7 @@ controllers = ships(1).components.getControllerComps();
 agent = controllers(1).getAgent();
 x = getXVectFromActor(agent);
 
-options = optimoptions("ga", "PopulationSize",4, "UseParallel",false, "OutputFcn",outputFunc, "Display","iter", "PlotFcn",{'gaplotscorediversity', 'gaplotbestf', 'gaplotdistance'}, 'MaxGenerations',2000, "FunctionTolerance",0, "FitnessScalingFcn","fitscalingprop", "CrossoverFcn","crossoverheuristic");
+options = optimoptions("ga", "PopulationSize",1024, "UseParallel",false, "OutputFcn",outputFunc, "Display","iter", "PlotFcn",{'gaplotscorediversity', 'gaplotbestf', 'gaplotdistance'}, 'MaxGenerations',2000, "FunctionTolerance",0, "FitnessScalingFcn","fitscalingprop", "CrossoverFcn","crossoverheuristic");
 [x,fval,exitflag,output,population,scores] = ga(fun,numel(x),[],[],[],[],[],[],[],options);
 
 setXVectFromActor(agent, x);
