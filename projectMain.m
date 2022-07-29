@@ -40,7 +40,7 @@ for(i=1:2)
 end
 % arena.propObjs.addPropagatedObject(NNS_Ship.createDefaultBasicShip(arena));
 
-simDriver = NNS_SimulationDriver(arena,true);
+simDriver = NNS_SimulationDriver(arena,false);
 
 %% Run GA to train agent
 fun = @(x) gaObjFunc(x, simDriver, ships);
@@ -50,7 +50,7 @@ controllers = ships(1).components.getControllerComps();
 agent = controllers(1).getAgent();
 x = getXVectFromActor(agent);
 
-options = optimoptions("ga", "PopulationSize",1024, "UseParallel",false, "OutputFcn",outputFunc, "Display","iter", "PlotFcn",{'gaplotscorediversity', 'gaplotbestf', 'gaplotdistance'}, 'MaxGenerations',2000, "FunctionTolerance",0, "FitnessScalingFcn","fitscalingprop", "CrossoverFcn","crossoverheuristic");
+options = optimoptions("ga", "PopulationSize",1024, "UseParallel",true, "OutputFcn",outputFunc, "Display","iter", "PlotFcn",{'gaplotscorediversity', 'gaplotbestf', 'gaplotdistance'}, 'MaxGenerations',2000, "FunctionTolerance",0, "FitnessScalingFcn","fitscalingprop", "CrossoverFcn","crossoverheuristic");
 [x,fval,exitflag,output,population,scores] = ga(fun,numel(x),[],[],[],[],[],[],[],options);
 
 setXVectFromActor(agent, x);
@@ -83,7 +83,8 @@ function f = gaObjFunc(x, simDriver, nnShips)
         simDriver.driveSimulation();
     
         %retrieve score
-        f(i) = -mean(simDriver.arena.scorekeeper.getScoresForAllRows());
+        scores = simDriver.arena.scorekeeper.getScoresForAllRows();
+        f(i) = -mean(scores(:,2));
     end
 
     f = mean(f);
