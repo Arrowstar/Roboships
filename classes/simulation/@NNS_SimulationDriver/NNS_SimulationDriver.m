@@ -94,13 +94,7 @@ classdef NNS_SimulationDriver < matlab.mixin.SetGet
                 if(isa(propObj,'NNS_Ship'))
                     obj.arena.scorekeeper.addPlayer(propObj);
                     propObj.clearMassCache();
-                    ships(end+1) = propObj; %#ok<AGROW> 
-                end
-            end
-
-            if(height(obj.arena.scorekeeper.getScoresForAllRows()) == 0)
-                for(i=1:length(ships))
-                    obj.arena.scorekeeper.addPlayer(ships(i));
+                    ships(end+1) = propObj;
                 end
             end
 
@@ -134,7 +128,7 @@ classdef NNS_SimulationDriver < matlab.mixin.SetGet
                     obj.propObjs.removePropObj(obj.propObjs.propObjs(propObjsIndsToBeDeleted(j)));
                 end
                 
-                if(obj.propObjs.getNumShipPropObjs() <= 1)
+                if(length(obj.propObjs.propObjs) <= 1)
                     break; %if there's only one thing out there or less, end the simulation
                 end
                 
