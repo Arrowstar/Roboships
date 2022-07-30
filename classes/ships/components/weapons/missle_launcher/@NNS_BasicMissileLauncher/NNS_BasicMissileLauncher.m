@@ -99,10 +99,10 @@ classdef NNS_BasicMissileLauncher < NNS_AbstractGun & NNS_AbstractPointableCompo
 
                 obj.lastShotTime = curTime;
 
-%                 if(isa(obj.ship, 'NNS_TracksScore'))
-%                     penalty = -0.02*obj.baseDamage;
-%                     obj.ship.addPointsToScore(penalty);
-%                 end
+                if(isa(obj.ship, 'NNS_TracksScore'))
+                    penalty = -0.01*obj.baseDamage;
+                    obj.ship.addPointsToScore(penalty);
+                end
             end
         end
         

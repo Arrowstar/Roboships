@@ -152,6 +152,9 @@ classdef NNS_Ship < NNS_PropagatedObject & NNS_ShootableObject & NNS_IsDetectabl
         
         function takeHit(obj, projectile)
             obj.hull.takeDamage(projectile.baseDamage);
+
+            penalty = -0.1*projectile.baseDamage;
+            obj.addPointsToScore(penalty);
             
             if(obj.getPlayerHealth() <= 0)
                 obj.active = false;

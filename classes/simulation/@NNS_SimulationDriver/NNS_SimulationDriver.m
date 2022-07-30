@@ -138,7 +138,7 @@ classdef NNS_SimulationDriver < matlab.mixin.SetGet
                     obj.propObjs.removePropObj(obj.propObjs.propObjs(propObjsIndsToBeDeleted(j)));
                 end
                 
-                if(length(obj.propObjs.propObjs) <= 1)
+                if(obj.propObjs.getNumShipPropObjs() <= 1)
                     break; %if there's only one thing out there or less, end the simulation
                 end
                 
