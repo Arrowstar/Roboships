@@ -1,4 +1,4 @@
-classdef NNS_CircularShipPlacement < matlab.mixin.SetGet
+classdef NNS_CircularShipPlacement < NNS_AbstractInitialShipPlacement
     %NNS_CircularShipPlacement Summary of this class goes here
     %   Detailed explanation goes here
 

@@ -23,7 +23,7 @@ classdef NNS_SimulationDriver < matlab.mixin.SetGet
             %NSS_SimulationDriver Construct an instance of this class
             arguments
                 arena NNS_Arena
-                shipPlacement(1,1) NNS_CircularShipPlacement = NNS_CircularShipPlacement();
+                shipPlacement(1,1) NNS_AbstractInitialShipPlacement = NNS_CircularShipPlacement();
                 showGraphics(1,1) logical = true;
             end
 
