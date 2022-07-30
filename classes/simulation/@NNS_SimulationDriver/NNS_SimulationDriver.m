@@ -94,7 +94,13 @@ classdef NNS_SimulationDriver < matlab.mixin.SetGet
                 if(isa(propObj,'NNS_Ship'))
                     obj.arena.scorekeeper.addPlayer(propObj);
                     propObj.clearMassCache();
-                    ships(end+1) = propObj;
+                    ships(end+1) = propObj; %#ok<AGROW> 
+                end
+            end
+
+            if(height(obj.arena.scorekeeper.getScoresForAllRows()) == 0)
+                for(i=1:length(ships))
+                    obj.arena.scorekeeper.addPlayer(ships(i));
                 end
             end
 
