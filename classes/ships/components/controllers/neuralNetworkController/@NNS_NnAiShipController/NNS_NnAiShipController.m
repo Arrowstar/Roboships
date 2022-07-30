@@ -51,7 +51,7 @@ classdef NNS_NnAiShipController < NNS_AbstractShipController & NNS_AbstractPower
             actInfo = rlFiniteSetSpec(actions);
 
             initOpts = rlAgentInitializationOptions("NumHiddenUnit",8, "UseRNN",false);
-            obj.rlAgent = rlPPOAgent(obsInfo,actInfo,initOpts);
+            obj.rlAgent = rlDQNAgent(obsInfo,actInfo,initOpts);
             obj.rlAgent.UseExplorationPolicy = false;
         end
 
@@ -88,7 +88,7 @@ classdef NNS_NnAiShipController < NNS_AbstractShipController & NNS_AbstractPower
 %             obj.rlAgent.UseExplorationPolicy = false;
 
             obs = obj.ship.getObservation();
-            actions = obj.rlAgent.getGreedyPolicy.getAction(obs);
+            actions = obj.rlAgent.getAction(obs);
             actions = actions{1};
             curTime = obj.ship.arena.simClock.curSimTime;
             

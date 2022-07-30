@@ -62,6 +62,7 @@ classdef NNS_BasicActiveSensor < NNS_AbstractSensor & NNS_AbstractPointableCompo
         function initializeComponent(obj)
             obj.curConeAngle = obj.maxConeAngle;
             obj.lastSensorOutput = NNS_SensorOutput.empty(0,0);
+            obj.pointingBearing = 0;
             obj.destroyGraphics();
         end
         

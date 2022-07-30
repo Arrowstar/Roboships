@@ -52,6 +52,7 @@ classdef NNS_BasicTurretedGun < NNS_AbstractGun & NNS_AbstractPointableComponent
         
         function initializeComponent(obj)  
             obj.lastShotTime = -Inf;
+            obj.pointingBearing = 0;
         end
         
         function copiedComp = copy(obj)

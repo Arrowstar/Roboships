@@ -44,6 +44,7 @@ classdef NNS_BasicMissileLauncher < NNS_AbstractGun & NNS_AbstractPointableCompo
         
         function initializeComponent(obj)  
             obj.lastShotTime = -Inf;
+            obj.pointingBearing = 0;
         end
         
         function copiedComp = copy(obj)
