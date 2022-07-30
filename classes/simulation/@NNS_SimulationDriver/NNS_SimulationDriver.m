@@ -98,6 +98,12 @@ classdef NNS_SimulationDriver < matlab.mixin.SetGet
                 end
             end
 
+            if(height(obj.arena.scorekeeper.getScoresForAllRows()) == 0)
+                for(i=1:length(ships))
+                    obj.arena.scorekeeper.addPlayer(ships(i));
+                end
+            end
+
             obj.shipPlacement.setInitialShipLocation(ships, obj.arena);
             
             delete(timerfindall());
