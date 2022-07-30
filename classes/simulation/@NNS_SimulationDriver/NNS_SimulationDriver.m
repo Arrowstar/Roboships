@@ -110,7 +110,7 @@ classdef NNS_SimulationDriver < matlab.mixin.SetGet
             
 %             warning('Starting at Sim Time = %.3f (%u) (%u)', obj.curSimTime, obj.propObjs.getNumActivePropObjs(), length(obj.propObjs.propObjs));
 
-%             delete(timerfindall());
+            delete(timerfindall());
             drawTimer = timer('TimerFcn',@(x,y) obj.updateGraphics(), 'BusyMode','drop', ...
                               'ExecutionMode','fixedRate', 'Period',1/15);
             t = tic;
