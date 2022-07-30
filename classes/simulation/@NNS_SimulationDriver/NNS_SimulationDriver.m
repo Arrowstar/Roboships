@@ -92,6 +92,7 @@ classdef NNS_SimulationDriver < matlab.mixin.SetGet
                 end
 
                 if(isa(propObj,'NNS_Ship'))
+
                     obj.arena.scorekeeper.addPlayer(propObj);
                     propObj.clearMassCache();
                     propObj.active = true;
@@ -107,7 +108,7 @@ classdef NNS_SimulationDriver < matlab.mixin.SetGet
 
             obj.shipPlacement.setInitialShipLocation(ships, obj.arena);
             
-            warning('Starting at Sim Time = %.3f (%u) (%u)', obj.curSimTime, obj.propObjs.getNumActivePropObjs(), length(obj.propObjs.propObjs));
+%             warning('Starting at Sim Time = %.3f (%u) (%u)', obj.curSimTime, obj.propObjs.getNumActivePropObjs(), length(obj.propObjs.propObjs));
 
 %             delete(timerfindall());
             drawTimer = timer('TimerFcn',@(x,y) obj.updateGraphics(), 'BusyMode','drop', ...
@@ -158,7 +159,7 @@ classdef NNS_SimulationDriver < matlab.mixin.SetGet
             end
             stop(drawTimer);
             
-            warning('Terminated at Sim Time = %.3f (%u) (%u)', obj.curSimTime, obj.propObjs.getNumActivePropObjs(), length(obj.propObjs.propObjs));
+%             warning('Terminated at Sim Time = %.3f (%u) (%u)', obj.curSimTime, obj.propObjs.getNumActivePropObjs(), length(obj.propObjs.propObjs));
         end
         
         function updateGraphics(obj)
