@@ -149,7 +149,7 @@ classdef NNS_SimulationDriver < matlab.mixin.SetGet
             end
             stop(drawTimer);
             
-%             fprintf('Sim Time = %.3f\nClock Time = %.3f', obj.curSimTime, toc(t));
+            fprintf('Terminated at Sim Time = %.3f', obj.curSimTime);
         end
         
         function updateGraphics(obj)
