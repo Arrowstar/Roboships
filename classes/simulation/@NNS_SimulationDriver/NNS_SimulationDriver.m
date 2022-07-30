@@ -8,6 +8,7 @@ classdef NNS_SimulationDriver < matlab.mixin.SetGet
 
         fieldAxes matlab.graphics.axis.Axes
         arena NNS_Arena
+        shipPlacement 
     end
     
     properties(Dependent = true)
@@ -18,10 +19,17 @@ classdef NNS_SimulationDriver < matlab.mixin.SetGet
     end
     
     methods
-        function obj = NNS_SimulationDriver(arena,showGraphics)
+        function obj = NNS_SimulationDriver(arena,shipPlacement,showGraphics)
             %NSS_SimulationDriver Construct an instance of this class
+            arguments
+                arena NNS_Arena
+                shipPlacement(1,1) NNS_CircularShipPlacement = NNS_CircularShipPlacement();
+                showGraphics(1,1) logical = true;
+            end
+
             obj.propObjs = arena.propObjs;
             obj.arena = arena;
+            obj.shipPlacement = shipPlacement;
             obj.showGraphics = showGraphics;
 
             if(obj.showGraphics)
@@ -73,6 +81,7 @@ classdef NNS_SimulationDriver < matlab.mixin.SetGet
 
             obj.arena.scorekeeper.removeAllPlayers();
             
+            ships = NNS_Ship.empty(1,0);
             for(i=obj.propObjs.getLength():-1:1)
                 propObj = obj.propObjs.getObj(i);
 
@@ -85,8 +94,11 @@ classdef NNS_SimulationDriver < matlab.mixin.SetGet
                 if(isa(propObj,'NNS_Ship'))
                     obj.arena.scorekeeper.addPlayer(propObj);
                     propObj.clearMassCache();
+                    ships(end+1) = propObj;
                 end
             end
+
+            obj.shipPlacement.setInitialShipLocation(ships, obj.arena);
             
             delete(timerfindall());
             drawTimer = timer('TimerFcn',@(x,y) obj.updateGraphics(), 'BusyMode','drop', ...
@@ -116,7 +128,7 @@ classdef NNS_SimulationDriver < matlab.mixin.SetGet
                     obj.propObjs.removePropObj(obj.propObjs.propObjs(propObjsIndsToBeDeleted(j)));
                 end
                 
-                if(length(obj.propObjs.propObjs) <= 1)
+                if(obj.propObjs.getNumShipPropObjs() <= 1)
                     break; %if there's only one thing out there or less, end the simulation
                 end
                 

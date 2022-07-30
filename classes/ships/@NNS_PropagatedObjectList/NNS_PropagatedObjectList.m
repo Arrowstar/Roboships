@@ -49,6 +49,11 @@ classdef NNS_PropagatedObjectList < matlab.mixin.SetGet
         function numActive = getNumActivePropObjs(obj)
             numActive = sum([obj.propObjs.active]);
         end
+
+        function numShips = getNumShipPropObjs(obj)
+            bool = arrayfun(@(x) isa(x, 'NNS_Ship'), obj.propObjs);
+            numShips = sum(bool);
+        end
         
         function removeAndReAddAllShips(obj)
             for(i=length(obj.propObjs):-1:1)  

@@ -50,8 +50,34 @@ classdef NNS_NnAiShipController < NNS_AbstractShipController & NNS_AbstractPower
             actions = num2cell(combvec(actInfoElems{:})', 2);
             actInfo = rlFiniteSetSpec(actions);
 
-            initOpts = rlAgentInitializationOptions("NumHiddenUnit",64, "UseRNN",true);
+            initOpts = rlAgentInitializationOptions("NumHiddenUnit",8, "UseRNN",false);
             obj.rlAgent = rlPPOAgent(obsInfo,actInfo,initOpts);
+            obj.rlAgent.UseExplorationPolicy = false;
+        end
+
+        function actInfo = getActInfo(obj)
+            actInfo = obj.ship.getActionInfo();
+
+            actInfoElems = {};
+            for(i=1:length(actInfo))
+                actInfoElem = actInfo(i).Elements(:);
+                if(iscell(actInfoElem))
+                    actionsMat = cell2mat(actInfoElem);
+                    for(j=1:width(actionsMat))
+                        actionsMatSub = unique(actionsMat(:,j));
+                        actInfoElems{end+1} = actionsMatSub(:)'; %#ok<AGROW> 
+                    end
+
+                elseif(isnumeric(actInfoElem))
+                    actInfoElems{end+1} = actInfoElem(:)'; %#ok<AGROW> 
+
+                else
+                    error('Problem!');
+                end
+            end
+
+            actions = num2cell(combvec(actInfoElems{:})', 2);
+            actInfo = rlFiniteSetSpec(actions);
         end
 
         function initializeComponent(obj)
@@ -59,10 +85,16 @@ classdef NNS_NnAiShipController < NNS_AbstractShipController & NNS_AbstractPower
         end
 
         function executeNextOperation(obj)
+%             obj.rlAgent.UseExplorationPolicy = false;
+
             obs = obj.ship.getObservation();
-            actions = obj.rlAgent.getAction(obs);
+            actions = obj.rlAgent.getGreedyPolicy.getAction(obs);
             actions = actions{1};
             curTime = obj.ship.arena.simClock.curSimTime;
+            
+%             actInfo = obj.getActInfo();
+%             ind = find(cellfun(@(A) all(eq(A,actions)), actInfo.Elements));
+%             fprintf('Exec action %u\n', ind);
 
             %loop over components here
             nnComps = obj.ship.components.getNeuralNetworkCapableComponents();

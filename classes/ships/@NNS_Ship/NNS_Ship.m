@@ -34,7 +34,7 @@ classdef NNS_Ship < NNS_PropagatedObject & NNS_ShootableObject & NNS_IsDetectabl
         function inializePropObj(obj)
             obj.active = true;
 
-            obj.stateMgr.setRandomizedPositionAndHeading([obj.arena.xLims, obj.arena.yLims],[0 360]);
+%             obj.stateMgr.setRandomizedPositionAndHeading([obj.arena.xLims, obj.arena.yLims],[0 360]);
                 
             speed = norm(obj.stateMgr.velocity);
             obj.basicPropagator.speedCntrlr.setPIDParam(NNS_PidController.PID_SETPOINT, speed);
