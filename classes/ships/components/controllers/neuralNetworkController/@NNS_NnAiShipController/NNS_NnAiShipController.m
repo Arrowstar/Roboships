@@ -51,7 +51,7 @@ classdef NNS_NnAiShipController < NNS_AbstractShipController & NNS_AbstractPower
             actInfo = rlFiniteSetSpec(actions);
 
             initOpts = rlAgentInitializationOptions("NumHiddenUnit",8, "UseRNN",false);
-            obj.rlAgent = rlDQNAgent(obsInfo,actInfo,initOpts);
+            obj.rlAgent = rlPPOAgent(obsInfo,actInfo,initOpts);
             obj.rlAgent.UseExplorationPolicy = false;
         end
 
