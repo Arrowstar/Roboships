@@ -76,7 +76,7 @@ classdef NNS_BasicRudder < NNS_AbstractRudder & NNS_AbstractPoweredComponent & N
         end
 
         function actInfo = getActionInfo(obj)
-            actInfo = rlFiniteSetSpec([-1 0 1]);
+            actInfo = rlFiniteSetSpec([-1 -0.1 0 0.1 1]);
             actInfo.Name = sprintf('%s: Basic Rudder Shift', obj.getShortCompName());
         end
 
