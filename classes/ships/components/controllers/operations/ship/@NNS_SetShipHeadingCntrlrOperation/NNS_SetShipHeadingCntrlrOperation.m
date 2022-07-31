@@ -21,7 +21,7 @@ classdef NNS_SetShipHeadingCntrlrOperation < NNS_AbstractControllerOperation
         function executeOperation(obj)
             pid = obj.ship.basicPropagator.headingCntrlr;
             pid.setPIDParam(pid.PID_SETPOINT, angleZero2Pi(deg2rad(obj.desiredHeading.getValue())));
-            fprintf('Set Heading: %0.3f deg\n', rad2deg(angleZero2Pi(deg2rad(obj.desiredHeading.getValue()))));
+%             fprintf('Set Heading: %0.3f deg\n', rad2deg(angleZero2Pi(deg2rad(obj.desiredHeading.getValue()))));
         end
                
         function tf = requiresTimeStep(obj) %#ok<MANU>

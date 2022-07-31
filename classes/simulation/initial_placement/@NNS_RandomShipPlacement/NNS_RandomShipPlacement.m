@@ -19,7 +19,14 @@ classdef NNS_RandomShipPlacement < NNS_AbstractInitialShipPlacement
             end
 
             for(i=1:length(ships)) %#ok<*NO4LP> 
-                ships(i).stateMgr.setRandomizedPositionAndHeading([arena.xLims, arena.yLims], [0 360]);
+                ship = ships(i);
+                ship.stateMgr.setRandomizedPositionAndHeading([arena.xLims, arena.yLims], [0 360]);
+
+                pid = ship.basicPropagator.headingCntrlr;
+                pid.setPIDParam(pid.PID_SETPOINT, angleZero2Pi(ship.stateMgr.heading));
+    
+                pid = ship.basicPropagator.speedCntrlr;
+                pid.setPIDParam(pid.PID_SETPOINT, 0);
             end
         end
     end

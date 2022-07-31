@@ -35,10 +35,18 @@ classdef NNS_CircularShipPlacement < NNS_AbstractInitialShipPlacement
             for(i=1:numel(ships)) %#ok<*NO4LP> 
                 ship = ships(i);
 
+                initHeading = angleZero2Pi(deg2rad(theta(i)) + pi);
+
                 ship.stateMgr.position = [xs(i); ys(i)];
                 ship.stateMgr.velocity = [0; 0];
-                ship.stateMgr.heading = angleZero2Pi(deg2rad(theta(i)) + pi);
+                ship.stateMgr.heading = initHeading;
                 ship.stateMgr.angRate = 0;
+
+                pid = ship.basicPropagator.headingCntrlr;
+                pid.setPIDParam(pid.PID_SETPOINT, angleZero2Pi(initHeading));
+
+                pid = ship.basicPropagator.speedCntrlr;
+                pid.setPIDParam(pid.PID_SETPOINT, 0);
             end
         end
     end

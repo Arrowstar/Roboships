@@ -74,10 +74,10 @@ classdef NNS_StateManager < matlab.mixin.SetGet
             
             rndX = xBnd(1) + (xBnd(2)-xBnd(1))*rand();
             rndY = yBnd(1) + (yBnd(2)-yBnd(1))*rand();
-            rndHdg = headingBnds(1) + (headingBnds(2)-headingBnds(1))*rand();
+            rndHdg = deg2rad(headingBnds(1) + (headingBnds(2)-headingBnds(1))*rand());
             
             obj.position = [rndX;rndY];
-            obj.heading = angleZero2Pi(deg2rad(rndHdg));
+            obj.heading = angleZero2Pi(rndHdg);
             obj.velocity = [0;0];
             obj.angRate = 0;
         end
