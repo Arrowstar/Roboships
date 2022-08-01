@@ -13,6 +13,7 @@ classdef NNS_Ship < NNS_PropagatedObject & NNS_ShootableObject & NNS_IsDetectabl
         arena NNS_Arena
 
         massCache(1,1) double = NaN;
+        obsInfoCache = [];
     end
     
     methods
@@ -51,6 +52,8 @@ classdef NNS_Ship < NNS_PropagatedObject & NNS_ShootableObject & NNS_IsDetectabl
             for(i=1:length(comps)) %#ok<*NO4LP>
                 comps(i).initializeComponent();
             end
+
+            obj.obsInfoCache = [];
         end
                 
         function mass = getMass(obj)
@@ -185,18 +188,25 @@ classdef NNS_Ship < NNS_PropagatedObject & NNS_ShootableObject & NNS_IsDetectabl
 
         %% Neural Network functions
         function obsInfo = getObservationInfo(obj)
-            obsInfo = rlNumericSpec([1 8]);
-            obsInfo.Name = '[time, x, y, vx, vy, heading, angVel, health]';
-
-            %loop over components here
-            nnComps = obj.components.getNeuralNetworkCapableComponents();
-            for(i=1:length(nnComps))
-                nnComp = nnComps(i);
-                compObsInfo = nnComp.getObservationInfo();
-
-                if(not(isempty(compObsInfo)))
-                    obsInfo(end+1) = compObsInfo; %#ok<AGROW> 
+            if(isempty(obj.obsInfoCache))
+                obsInfo = rlNumericSpec([1 8]);
+                obsInfo.Name = '[time, x, y, vx, vy, heading, angVel, health]';
+    
+                %loop over components here
+                nnComps = obj.components.getNeuralNetworkCapableComponents();
+                for(i=1:length(nnComps))
+                    nnComp = nnComps(i);
+                    compObsInfo = nnComp.getObservationInfo();
+    
+                    if(not(isempty(compObsInfo)))
+                        obsInfo(end+1) = compObsInfo; %#ok<AGROW> 
+                    end
                 end
+
+                obj.obsInfoCache = obsInfo;
+
+            else
+                obsInfo = obj.obsInfoCache;
             end
         end
 

@@ -10,6 +10,9 @@ classdef NNS_BasicMineLayer < NNS_AbstractGun & NNS_AbstractPoweredComponent & N
 
         id double
         relPos double         % m - relative to the origin of vessel it's mounted on
+
+        obsInfoCache = [];
+        actionInfoCache = [];
     end
 
     properties(Dependent)
@@ -45,6 +48,9 @@ classdef NNS_BasicMineLayer < NNS_AbstractGun & NNS_AbstractPoweredComponent & N
         
         function initializeComponent(obj)  
             obj.lastShotTime = -Inf;
+
+            obj.obsInfoCache = [];
+            obj.actionInfoCache = [];
         end
         
         function copiedComp = copy(obj)
@@ -144,8 +150,14 @@ classdef NNS_BasicMineLayer < NNS_AbstractGun & NNS_AbstractPoweredComponent & N
         end
 
         function obsInfo = getObservationInfo(obj)
-            obsInfo = rlNumericSpec([1, 1]);
-            obsInfo.Name = sprintf('%s: [Is Loaded]', obj.getShortCompName());
+            if(isempty(obj.obsInfoCache))
+                obsInfo = rlNumericSpec([1, 1]);
+                obsInfo.Name = sprintf('%s: [Is Loaded]', obj.getShortCompName());
+
+                obj.obsInfoCache = obsInfo;
+            else
+                obsInfo = obj.obsInfoCache;
+            end
         end
 
         function obs = getObservation(obj)
@@ -155,8 +167,15 @@ classdef NNS_BasicMineLayer < NNS_AbstractGun & NNS_AbstractPoweredComponent & N
         end
 
         function actInfo = getActionInfo(obj)
-            actInfo = rlFiniteSetSpec([0 1]);
-            actInfo.Name = sprintf('%s: [Lay Mine]', obj.getShortCompName());
+            if(isempty(obj.actionInfoCache))
+                actInfo = rlFiniteSetSpec([0 1]);
+                actInfo.Name = sprintf('%s: [Lay Mine]', obj.getShortCompName());   
+
+                obj.actionInfoCache = actInfo;
+
+            else
+                actInfo = obj.actionInfoCache;
+            end
         end
 
         function execAction(obj, action, curTime)

@@ -10,6 +10,9 @@ classdef NNS_BasicTurretedGun < NNS_AbstractGun & NNS_AbstractPointableComponent
 
         id double
         relPos double         % m - relative to the origin of vessel it's mounted on
+
+        obsInfoCache = [];
+        actionInfoCache = [];
     end
 
     properties(Dependent)
@@ -53,6 +56,9 @@ classdef NNS_BasicTurretedGun < NNS_AbstractGun & NNS_AbstractPointableComponent
         function initializeComponent(obj)  
             obj.lastShotTime = -Inf;
             obj.pointingBearing = 0;
+
+            obj.obsInfoCache = [];
+            obj.actionInfoCache = [];
         end
         
         function copiedComp = copy(obj)
@@ -186,10 +192,14 @@ classdef NNS_BasicTurretedGun < NNS_AbstractGun & NNS_AbstractPointableComponent
         end
 
         function obsInfo = getObservationInfo(obj)
-            obsInfo = rlNumericSpec([1, 2]);
-            obsInfo.Name = sprintf('%s: [Pointing Angle, Is Loaded]', obj.getShortCompName());
+            if(isempty(obj.obsInfoCache))
+                obsInfo = rlNumericSpec([1, 2]);
+                obsInfo.Name = sprintf('%s: [Pointing Angle, Is Loaded]', obj.getShortCompName());
 
-            %
+                obj.obsInfoCache = obsInfo;
+            else
+                obsInfo = obj.obsInfoCache;
+            end
         end
 
         function obs = getObservation(obj)
@@ -200,12 +210,19 @@ classdef NNS_BasicTurretedGun < NNS_AbstractGun & NNS_AbstractPointableComponent
         end
 
         function actInfo = getActionInfo(obj)
-            a = deg2rad([-10 -1 0 1 10]);
-            b = [0 1];
-            actions = num2cell(combvec(a,b)',2);
+            if(isempty(obj.actionInfoCache))
+                a = deg2rad([-10 -1 0 1 10]);
+                b = [0 1];
+                actions = num2cell(combvec(a,b)',2);
+    
+                actInfo = rlFiniteSetSpec(actions);
+                actInfo.Name = sprintf('%s: [Delta Gun Heading, Fire Gun]', obj.getShortCompName());      
 
-            actInfo = rlFiniteSetSpec(actions);
-            actInfo.Name = sprintf('%s: [Delta Gun Heading, Fire Gun]', obj.getShortCompName());   
+                obj.actionInfoCache = actInfo;
+
+            else
+                actInfo = obj.actionInfoCache;
+            end
         end
 
         function execAction(obj, action, curTime)

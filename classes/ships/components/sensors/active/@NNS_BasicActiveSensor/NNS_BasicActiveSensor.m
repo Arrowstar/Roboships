@@ -11,6 +11,9 @@ classdef NNS_BasicActiveSensor < NNS_AbstractSensor & NNS_AbstractPointableCompo
         isaDetectable function_handle
         lastSensorOutput NNS_SensorOutput
         id double
+
+        obsInfoCache = [];
+        actionInfoCache = [];
     end
     
     properties(Dependent)
@@ -64,6 +67,9 @@ classdef NNS_BasicActiveSensor < NNS_AbstractSensor & NNS_AbstractPointableCompo
             obj.lastSensorOutput = NNS_SensorOutput.empty(0,0);
             obj.pointingBearing = 0;
             obj.destroyGraphics();
+
+            obj.obsInfoCache = [];
+            obj.actionInfoCache = [];
         end
         
         function copiedComp = copy(obj)
@@ -252,8 +258,14 @@ classdef NNS_BasicActiveSensor < NNS_AbstractSensor & NNS_AbstractPointableCompo
         end
 
         function obsInfo = getObservationInfo(obj)
-            obsInfo = rlNumericSpec([1, 3]);
-            obsInfo.Name = sprintf('%s: [Is object detected, range, bearing]', obj.getShortCompName());
+            if(isempty(obj.obsInfoCache))
+                obsInfo = rlNumericSpec([1, 3]);
+                obsInfo.Name = sprintf('%s: [Is object detected, range, bearing]', obj.getShortCompName());
+
+                obj.obsInfoCache = obsInfo;
+            else
+                obsInfo = obj.obsInfoCache;
+            end
         end
 
         function obs = getObservation(obj)
@@ -286,8 +298,15 @@ classdef NNS_BasicActiveSensor < NNS_AbstractSensor & NNS_AbstractPointableCompo
         end
 
         function actInfo = getActionInfo(obj)
-            actInfo = rlFiniteSetSpec(deg2rad([-10 -1 0 1 10]));
-            actInfo.Name = sprintf('%s: Delta Sensor Heading', obj.getShortCompName());            
+            if(isempty(obj.actionInfoCache))
+                actInfo = rlFiniteSetSpec(deg2rad([-10 -1 0 1 10]));
+                actInfo.Name = sprintf('%s: Delta Sensor Heading', obj.getShortCompName());    
+
+                obj.actionInfoCache = actInfo;
+
+            else
+                actInfo = obj.actionInfoCache;
+            end
         end
 
         function execAction(obj, action, curTime)

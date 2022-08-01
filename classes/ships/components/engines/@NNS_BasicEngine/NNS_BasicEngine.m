@@ -6,6 +6,8 @@ classdef NNS_BasicEngine < NNS_AbstractEngine & NNS_AbstractPoweredComponent & N
         ship NNS_PropagatedObject
         throttle double = 1.0; %-1.0 -> 1.0   
         id double
+
+        actionInfoCache = [];
     end
     
     properties(SetObservable)
@@ -32,6 +34,8 @@ classdef NNS_BasicEngine < NNS_AbstractEngine & NNS_AbstractPoweredComponent & N
         
         function initializeComponent(obj)
             obj.throttle = 1.0;
+
+            obj.actionInfoCache = [];
         end
         
         function copiedComp = copy(obj)
@@ -76,8 +80,14 @@ classdef NNS_BasicEngine < NNS_AbstractEngine & NNS_AbstractPoweredComponent & N
         end
 
         function actInfo = getActionInfo(obj)
-            actInfo = rlFiniteSetSpec([0 1]);
-            actInfo.Name = sprintf('%s: Basic Engine Throttle', obj.getShortCompName());
+            if(isempty(obj.actionInfoCache))
+                actInfo = rlFiniteSetSpec([0 1]);
+                actInfo.Name = sprintf('%s: Basic Engine Throttle', obj.getShortCompName());
+
+                obj.actionInfoCache = actInfo;
+            else
+                actInfo = obj.actionInfoCache;
+            end
         end
 
         function execAction(obj, action, curTime)
