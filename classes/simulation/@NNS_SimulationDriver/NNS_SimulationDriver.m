@@ -19,12 +19,14 @@ classdef NNS_SimulationDriver < matlab.mixin.SetGet
     end
     
     methods
-        function obj = NNS_SimulationDriver(arena,shipPlacement,showGraphics)
+        function obj = NNS_SimulationDriver(arena,shipPlacement,showGraphics,maxTime,timeStep)
             %NSS_SimulationDriver Construct an instance of this class
             arguments
                 arena NNS_Arena
                 shipPlacement(1,1) NNS_AbstractInitialShipPlacement = NNS_CircularShipPlacement();
                 showGraphics(1,1) logical = true;
+                maxTime(1,1) double = 180;
+                timeStep(1,1) double = 1/10;
             end
 
             obj.propObjs = arena.propObjs;
@@ -36,7 +38,7 @@ classdef NNS_SimulationDriver < matlab.mixin.SetGet
                 obj.fieldAxes = arena.getFigAxes();
             end
             
-            obj.clock = NNS_SimClock(0, 180, 0, 1/10);
+            obj.clock = NNS_SimClock(0, maxTime, 0, timeStep);
             obj.arena.simClock = obj.clock;
         end
         
