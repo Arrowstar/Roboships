@@ -124,10 +124,10 @@ classdef NNS_BasicTurretedGun < NNS_AbstractGun & NNS_AbstractPointableComponent
 
                 obj.lastShotTime = curTime;
 
-                if(isa(obj.ship, 'NNS_TracksScore'))
-                    penalty = -0.01*obj.baseDamage;
-                    obj.ship.addPointsToScore(penalty);
-                end
+%                 if(isa(obj.ship, 'NNS_TracksScore'))
+%                     penalty = -0.01*obj.baseDamage;
+%                     obj.ship.addPointsToScore(penalty);
+%                 end
             end
         end
         
