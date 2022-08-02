@@ -27,28 +27,7 @@ classdef NNS_NnAiShipController < NNS_AbstractShipController & NNS_AbstractPower
             obj.drawer = NNS_NnAiShipControllerDrawer(ship, obj);
 
             obsInfo = obj.ship.getObservationInfo();
-            actInfo = obj.ship.getActionInfo();
-
-            actInfoElems = {};
-            for(i=1:length(actInfo))
-                actInfoElem = actInfo(i).Elements(:);
-                if(iscell(actInfoElem))
-                    actionsMat = cell2mat(actInfoElem);
-                    for(j=1:width(actionsMat))
-                        actionsMatSub = unique(actionsMat(:,j));
-                        actInfoElems{end+1} = actionsMatSub(:)'; %#ok<AGROW> 
-                    end
-
-                elseif(isnumeric(actInfoElem))
-                    actInfoElems{end+1} = actInfoElem(:)'; %#ok<AGROW> 
-
-                else
-                    error('Problem!');
-                end
-            end
-
-            actions = num2cell(combvec(actInfoElems{:})', 2);
-            actInfo = rlFiniteSetSpec(actions);
+            actInfo = obj.getActInfo();
 
             initOpts = rlAgentInitializationOptions("NumHiddenUnit",8, "UseRNN",false);
             obj.rlAgent = rlPPOAgent(obsInfo,actInfo,initOpts);
@@ -81,7 +60,12 @@ classdef NNS_NnAiShipController < NNS_AbstractShipController & NNS_AbstractPower
         end
 
         function initializeComponent(obj)
-            %nop
+            actor = getActor(obj.rlAgent);
+
+            if(gpuDeviceCount("available") >= 1 && not(strcmpi(actor.UseDevice,"gpu")))
+                actor.UseDevice = "gpu";
+                setActor(obj.rlAgent, actor);
+            end
         end
 
         function executeNextOperation(obj)
