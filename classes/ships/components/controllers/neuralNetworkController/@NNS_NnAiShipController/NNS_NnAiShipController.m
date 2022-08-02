@@ -60,11 +60,13 @@ classdef NNS_NnAiShipController < NNS_AbstractShipController & NNS_AbstractPower
         end
 
         function initializeComponent(obj)
-            actor = getActor(obj.rlAgent);
-
-            if(gpuDeviceCount("available") >= 1 && not(strcmpi(actor.UseDevice,"gpu")))
-                actor.UseDevice = "gpu";
-                setActor(obj.rlAgent, actor);
+            if(false)
+                actor = getActor(obj.rlAgent);
+    
+                if(gpuDeviceCount("available") >= 1 && not(strcmpi(actor.UseDevice,"gpu")))
+                    actor.UseDevice = "gpu";
+                    setActor(obj.rlAgent, actor);
+                end
             end
         end
 
