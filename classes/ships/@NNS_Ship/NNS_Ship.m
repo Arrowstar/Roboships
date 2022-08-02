@@ -130,8 +130,21 @@ classdef NNS_Ship < NNS_PropagatedObject & NNS_ShootableObject & NNS_IsDetectabl
                 cntrlrs(i).executeNextOperation();
             end
             
+            xLims = obj.arena.xLims;
+            yLims = obj.arena.yLims;
+
             usesPid = obj.usesPidControllers();
-            obj.basicPropagator.propagateOneStep(timeStep, obj.arena.xLims, obj.arena.yLims, usesPid);
+            obj.basicPropagator.propagateOneStep(timeStep, xLims, yLims, usesPid);
+
+            pos = obj.stateMgr.position;
+            if(pos(1) <= min(xLims) || ...
+               pos(1) >= max(xLims) || ...
+               pos(2) <= min(yLims) || ...
+               pos(2) >= max(yLims))
+                againstArenaBndPenality = -0.1;
+                obj.addPointsToScore(againstArenaBndPenality);
+
+            end
         end     
        
         function drawObjectToAxes(obj, hAxes)
