@@ -141,9 +141,16 @@ classdef NNS_Ship < NNS_PropagatedObject & NNS_ShootableObject & NNS_IsDetectabl
                pos(1) >= max(xLims) || ...
                pos(2) <= min(yLims) || ...
                pos(2) >= max(yLims))
+
                 againstArenaBndPenality = -0.1;
                 obj.addPointsToScore(againstArenaBndPenality);
+            end
 
+            vel = obj.stateMgr.velocity;
+            hdgVect = obj.stateMgr.getHeadingUnitVector();
+            if(abs(dang([vel;0], [hdgVect;0])) > deg2rad(135))
+                facingAgainstVel = -0.1;
+                obj.addPointsToScore(facingAgainstVel);
             end
         end     
        
