@@ -142,20 +142,26 @@ classdef NNS_Ship < NNS_PropagatedObject & NNS_ShootableObject & NNS_IsDetectabl
                pos(2) <= min(yLims) || ...
                pos(2) >= max(yLims))
 
-                againstArenaBndPenality = -0.1;
-                obj.addPointsToScore(againstArenaBndPenality);
+                againstArenaBndPenalty = -0.1;
+                obj.addPointsToScore(againstArenaBndPenalty);
             end
 
             vel = obj.stateMgr.velocity;
             if(norm(vel) < 0.01)
-                speedTooSlow = -0.1;
-                obj.addPointsToScore(speedTooSlow);
+                speedTooSlowPenalty = -0.1;
+                obj.addPointsToScore(speedTooSlowPenalty);
             end
 
             hdgVect = obj.stateMgr.getHeadingUnitVector();
             if(abs(dang([vel;0], [hdgVect;0])) > deg2rad(135))
-                facingAgainstVel = -0.1;
-                obj.addPointsToScore(facingAgainstVel);
+                facingAgainstVelPenalty = -0.1;
+                obj.addPointsToScore(facingAgainstVelPenalty);
+            end
+
+            angRateRevsPerSec = abs(obj.stateMgr.angRate)/(2*pi);
+            if(angRateRevsPerSec > 0.5)
+                tooHighAngRatePenalty = -0.1;
+                obj.addPointsToScore(tooHighAngRatePenalty);
             end
         end     
        
