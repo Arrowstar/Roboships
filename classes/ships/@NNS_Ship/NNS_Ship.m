@@ -147,6 +147,11 @@ classdef NNS_Ship < NNS_PropagatedObject & NNS_ShootableObject & NNS_IsDetectabl
             end
 
             vel = obj.stateMgr.velocity;
+            if(norm(vel) < 0.01)
+                speedTooSlow = -0.1;
+                obj.addPointsToScore(speedTooSlow);
+            end
+
             hdgVect = obj.stateMgr.getHeadingUnitVector();
             if(abs(dang([vel;0], [hdgVect;0])) > deg2rad(135))
                 facingAgainstVel = -0.1;
