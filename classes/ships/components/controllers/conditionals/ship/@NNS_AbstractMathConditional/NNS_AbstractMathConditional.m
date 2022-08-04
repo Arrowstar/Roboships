@@ -3,7 +3,7 @@ classdef(Abstract) NNS_AbstractMathConditional < NNS_AbstractControllerCondition
     properties
         ship NNS_Ship
         
-        drawer NNS_AbstractControllerCommandDrawer
+        drawer 
         
         lhs NNS_ControllerNumeric
         rhs NNS_ControllerNumeric

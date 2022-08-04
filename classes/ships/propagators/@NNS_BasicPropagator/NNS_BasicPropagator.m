@@ -175,9 +175,12 @@ classdef NNS_BasicPropagator < matlab.mixin.SetGet
 
             %Throttles
             inputVel = norm(stateMgr.velocity);
-            a = [stateMgr.velocity;0];
-            b = [headingUnitVect;0];
-            if(abs(dang(a, b)) > pi/2)
+
+            a = [headingUnitVect;0];
+            b = [stateMgr.velocity;0];
+            sideSlipAng = dang(a, b);
+            
+            if(abs(sideSlipAng) > pi/2)
                 inputVel = -inputVel;
             end
             
@@ -224,9 +227,7 @@ classdef NNS_BasicPropagator < matlab.mixin.SetGet
             if(CdA == CdASide)
                 adjustedCdA = CdA;
             else
-                a = [headingUnitVect;0];
-                b = [stateMgr.velocity;0];
-                sideSlipAng = dang(a, b);
+
                 x1 = 1;
                 x2 = 0;
                 y1 = CdA;

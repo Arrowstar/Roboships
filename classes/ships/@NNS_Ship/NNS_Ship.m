@@ -91,7 +91,10 @@ classdef NNS_Ship < NNS_PropagatedObject & NNS_ShootableObject & NNS_IsDetectabl
         end
         
         function CdL = getLinearDragCoeff(obj)
-            CdL = obj.hull.getLinearDragCoeff();
+            baseCdL = obj.hull.getLinearDragCoeff();
+
+            ang = dang([obj.stateMgr.velocity; 0], [obj.stateMgr.getHeadingUnitVector(); 0]);
+            CdL = baseCdL*(1 + 2*sin(ang));
         end
         
         function CdR = getRotDragCoeff(obj)
