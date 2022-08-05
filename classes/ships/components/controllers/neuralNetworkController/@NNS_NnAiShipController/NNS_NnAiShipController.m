@@ -29,7 +29,7 @@ classdef NNS_NnAiShipController < NNS_AbstractShipController & NNS_AbstractPower
             obsInfo = obj.ship.getObservationInfo();
             actInfo = obj.getActInfo();
 
-            initOpts = rlAgentInitializationOptions("NumHiddenUnit",8, "UseRNN",false);
+            initOpts = rlAgentInitializationOptions("NumHiddenUnit",256, "UseRNN",false);
             obj.rlAgent = rlPPOAgent(obsInfo,actInfo,initOpts);
             obj.rlAgent.UseExplorationPolicy = false;
         end
