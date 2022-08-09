@@ -56,6 +56,11 @@ classdef NNS_BasicShipHull < NNS_AbstractHull
         
         function initializeComponent(obj)
             obj.curHitPts = obj.getMaxHitPoints();
+
+            obj.mass = [];
+            obj.momInert = [];
+            obj.frontArea = [];
+            obj.sideArea = [];
         end
         
         function copiedComp = copy(obj)
@@ -106,7 +111,7 @@ classdef NNS_BasicShipHull < NNS_AbstractHull
         
         function frontAreaR = getFrontalSurfArea(obj)
             if(isempty(obj.frontArea))
-                obj.frontArea = max(obj.hullVerts(:,1)) - min(obj.hullVerts(:,1));
+                obj.frontArea = max(obj.hullVerts(:,2)) - min(obj.hullVerts(:,2));
             end
             
             frontAreaR = obj.frontArea;
@@ -114,18 +119,18 @@ classdef NNS_BasicShipHull < NNS_AbstractHull
         
         function sideAreaR = getSideSurfArea(obj)
             if(isempty(obj.sideArea))
-                obj.sideArea = max(obj.hullVerts(:,2)) - min(obj.hullVerts(:,2));
+                obj.sideArea = max(obj.hullVerts(:,1)) - min(obj.hullVerts(:,1));
             end
             
             sideAreaR = obj.sideArea;
         end
 
         function CdL = getLinearDragCoeff(obj)
-            CdL = 0.05;
+            CdL = 0.25;
         end
         
         function CdR = getRotDragCoeff(obj)
-            CdR = 0.05;
+            CdR = 0.25;
         end
         
         function CdA = getLinearCdA(obj)

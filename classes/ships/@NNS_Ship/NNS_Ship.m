@@ -93,8 +93,8 @@ classdef NNS_Ship < NNS_PropagatedObject & NNS_ShootableObject & NNS_IsDetectabl
         function CdL = getLinearDragCoeff(obj)
             baseCdL = obj.hull.getLinearDragCoeff();
 
-            ang = dang([obj.stateMgr.velocity; 0], [obj.stateMgr.getHeadingUnitVector(); 0]);
-            CdL = baseCdL*(1 + 2*sin(ang));
+            ang = abs(dang([obj.stateMgr.velocity; 0], [obj.stateMgr.getHeadingUnitVector(); 0]));
+            CdL = baseCdL*(1 + 10*sin(ang));
         end
         
         function CdR = getRotDragCoeff(obj)
@@ -102,7 +102,16 @@ classdef NNS_Ship < NNS_PropagatedObject & NNS_ShootableObject & NNS_IsDetectabl
         end
         
         function CdA = getLinearCdA(obj)
-            CdA = obj.hull.getLinearCdA();
+            fA = obj.getFrontalSurfArea();
+            sA = obj.getSideSurfArea();
+
+            ang = abs(dang([obj.stateMgr.velocity; 0], [obj.stateMgr.getHeadingUnitVector(); 0]));
+            
+            mag = abs(sA - fA);
+            
+            A = mag*cos(ang+pi/2) + fA;
+
+            CdA = obj.getLinearDragCoeff() * A;
         end
         
         function CdA = getRotCdA(obj)
