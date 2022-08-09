@@ -57,7 +57,17 @@ classdef NNS_BasicRudder < NNS_AbstractRudder & NNS_AbstractPoweredComponent & N
         end
         
         function curTorque = getCurrentTorque(obj)
-            curTorque = obj.maxTorque * obj.rudderShift;
+            [~, ~, ~, termSpeed] = getShipLinearTermVel(obj.ship);
+            curSpeed = norm(obj.ship.stateMgr.velocity);
+            fracSpeed = curSpeed/abs(termSpeed);
+
+            if(fracSpeed >= 0.25)
+                torqueSpeedMult = 1;
+            else
+                torqueSpeedMult = 4*fracSpeed;
+            end
+
+            curTorque = torqueSpeedMult * obj.maxTorque * obj.rudderShift;
         end
                
         function power = getPowerDrawGen(obj)
